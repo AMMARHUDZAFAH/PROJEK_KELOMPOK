@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - ElectroHub</title>
-
-    <!-- 1. Link Bootstrap -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- 2. Link CSS Custom (Wajib ada biar gak polos) -->
+    <!-- Custom CSS (Wajib ada file public/css/custom.css yang tadi dibuat) -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-
-    <!-- 3. Font Google -->
+    <!-- Font Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="login-body">
+<body class="login-body"> <!-- Background animasi -->
 
-    <!-- Card Register (Ada class register-card biar agak lebar) -->
-    <div class="card p-4 login-card register-card">
+    <!-- Alert Sukses (Melayang di atas) -->
+    @if (session('success'))
+        <div class="alert alert-success position-absolute top-0 start-50 translate-middle-x mt-3 shadow">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- Alert Error (Kalau ada salah input) -->
+    @if ($errors->any())
+        <div class="alert alert-danger position-absolute top-0 start-50 translate-middle-x mt-3 shadow" style="z-index: 1050; width: 90%; max-width: 450px;">
+            <ul class="mb-0 ps-3">
+                @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!-- Kartu Register (Lebih lebar dikit dari login biar muat) -->
+    <div class="card p-4 shadow-lg login-card" style="width: 450px;">
         
         <div class="text-center mb-4">
-            <div style="font-size: 2.5rem;">📝</div>
-            <h4 class="fw-bold text-dark mt-2">Join ElectroHub</h4>
-            <p class="text-muted small">Buat akun barumu sekarang</p>
+            <h1 style="font-size: 3rem;">📝</h1>
+            <h3 class="fw-bold text-dark">Join ElectroHub!</h3>
+            <p class="text-muted small">Buat akun baru dalam hitungan detik</p>
         </div>
-
-        <!-- Alert Error Kalau Salah Input -->
-        @if ($errors->any())
-            <div class="alert alert-danger py-2 small mb-3 border-0 shadow-sm">
-                <ul class="mb-0 ps-3">
-                    @foreach ($errors->all() as $err)
-                        <li>{{ $err }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
         <form method="POST" action="/register">
             @csrf
@@ -52,35 +55,36 @@
                 <label for="emailInput">Alamat Email</label>
             </div>
 
-            <!-- Password & Confirm (Sebelahan) -->
-            <div class="row g-2 mb-3">
-                <div class="col-6">
+            <!-- Password -->
+            <div class="row g-2 mb-4">
+                <div class="col-md-6">
                     <div class="form-floating">
                         <input type="password" name="password" class="form-control" id="passInput" placeholder="Password" required>
                         <label for="passInput">Password</label>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="form-floating">
                         <input type="password" name="password_confirmation" class="form-control" id="confPassInput" placeholder="Confirm" required>
-                        <label for="confPassInput">Confirm</label>
+                        <label for="confPassInput">Ulangi Pass</label>
                     </div>
                 </div>
             </div>
 
-            <!-- Tombol Daftar (Warna Hijau) -->
-            <button class="btn btn-success w-100 py-2 fw-bold shadow-sm">
-                Daftar Sekarang
+            <button class="btn btn-success w-100 py-2 fw-bold" style="font-size: 1.1rem;">
+                ✨ Daftar Sekarang
             </button>
         </form>
 
-        <p class="text-center mt-4 mb-0 small text-muted">
+        <p class="text-center mt-4 mb-0 text-muted">
             Sudah punya akun? <a href="/login" class="text-decoration-none fw-bold text-primary">Login disini</a>
         </p>
     </div>
 
-    <!-- Script JS -->
+    <!-- Script JS Custom (Buat efek 3D Tilt) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
 </body>
+
 </html>

@@ -1,0 +1,43 @@
+/* --- ANIMASI LOGIN PAGE (Updated) --- */
+.login-body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    
+    /* Centering Magic */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;     /* Tengah Vertikal */
+    justify-content: center; /* Tengah Horizontal */
+    margin: 0;
+    padding: 20px; /* Jarak aman biar gak nempel tepi layar HP */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px; /* Lebih membulat dikit */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    /* Ukuran Pas (Gak Kegedean) */
+    width: 100%;           /* Di HP dia full width */
+    max-width: 400px;      /* Di Laptop mentok segini (Ukuran ideal) */
+    
+    /* Shadow Soft */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    
+    /* 3D Props */
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+/* Khusus Register boleh lebih lebar dikit biar muat 2 kolom */
+.register-card {
+    max-width: 450px; 
+}
