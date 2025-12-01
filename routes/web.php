@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Public route
 Route::get('/', fn() => view('welcome'));
@@ -67,4 +67,5 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', \App\Http\Middleware
     // Force delete (permanent) user
     Route::delete('users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
 });
+
 
