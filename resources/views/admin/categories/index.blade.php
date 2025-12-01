@@ -51,7 +51,7 @@
                                 </td>
                                 <td><small class="text-muted">{{ $category->created_at->format('d/m/Y H:i') }}</small></td>
                                 <td>
-                                    <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-warning ">
                                         ✏️ Edit
                                     </a>
                                     <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" style="display:inline;">
