@@ -6,6 +6,119 @@
         <h2>🛒 Shopping Cart</h2>
         <a href="{{ route('products.index') }}" class="btn btn-outline-primary">Continue Shopping</a>
     </div>
+<style>
+    /* ===== TRANSITIONS GLOBAL ===== */
+    * {
+        transition: 0.25s ease;
+    }
+
+    /* ===== BACKGROUND GRADIENT UTAMA ===== */
+    body {
+        background: linear-gradient(160deg, #01082D 0%, #041D56 40%, #0F2573 100%) !important;
+        min-height: 100vh;
+        padding-bottom: 40px;
+    }
+
+    /* ===== CARD EFFECT: SOFT SHADOW & LIFT ===== */
+    .card {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+        border-radius: 12px !important;
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(38,108,169,0.3) !important;
+    }
+
+    /* ===== HOVER EFFECT UNTUK BARIS TABEL ===== */
+    tbody tr:hover {
+        background-color: rgba(173, 225, 251, 0.08) !important;
+    }
+
+    /* ===== DIVIDER GLOW UNTUK SUMMARY ===== */
+    .card-body > div {
+        border-bottom: 1px solid rgba(173,225,251,0.1);
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    .card-body > div:last-child {
+        border-bottom: none !important;
+    }
+
+    /* ===== HIGHLIGHT UTAMA: TOTAL ===== */
+    .fs-5 strong {
+        color: #ADE1FB !important;
+        text-shadow: 0 0 8px rgba(38,108,169,0.4);
+    }
+
+    /* ===== BUTTON ENHANCEMENTS ===== */
+    .btn-primary {
+        box-shadow: 0 0 10px rgba(38,108,169,0.5);
+        font-weight: 600;
+    }
+
+    .btn-primary:hover {
+        box-shadow: 0 0 15px rgba(173,225,251,0.7);
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-danger:hover {
+        box-shadow: 0 0 10px rgba(38,108,169,0.4);
+        transform: translateY(-2px);
+    }
+
+    /* ===== CART IMAGES ===== */
+    td img {
+        border: 2px solid #266CA9;
+        border-radius: 8px !important;
+        box-shadow: 0 0 8px rgba(38,108,169,0.4);
+    }
+
+    td img:hover {
+        transform: scale(1.05);
+    }
+
+    /* ===== INPUT NUMBER ===== */
+    .form-control {
+        border-radius: 6px !important;
+    }
+
+    .form-control:hover {
+        border-color: #ADE1FB !important;
+    }
+
+    /* Highlight saat fokus */
+    .form-control:focus {
+        box-shadow: 0 0 8px rgba(173,225,251,0.3) !important;
+    }
+
+    /* ===== EMPTY CART CONTAINER ===== */
+    .alert-info {
+        border-radius: 14px;
+        background: linear-gradient(135deg, #266CA9 0%, #0F2573 100%) !important;
+        color: #fff !important;
+        padding: 40px !important;
+    }
+
+    /* ===== HEADER SECTION ===== */
+    h2 {
+        text-shadow: 0 0 12px rgba(173,225,251,0.4);
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .d-flex a.btn-outline-primary {
+        font-weight: 600;
+    }
+
+    h2 {
+        color: #ADE1FB !important; /* paling terang */
+        text-shadow: 0 0 12px rgba(0,0,0,0.7), 0 0 8px rgba(173,225,251,0.3);
+        font-weight: 700 !important;
+        letter-spacing: 0.5px;
+    }
+</style>
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show">
