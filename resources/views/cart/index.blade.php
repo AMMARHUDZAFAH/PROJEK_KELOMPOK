@@ -119,6 +119,102 @@
         font-weight: 700 !important;
         letter-spacing: 0.5px;
     }
+
+    /* ===== TEKS PRODUK ===== */
+tbody td h6 {
+    color: #0F2573 !important;   /* biru gelap, jelas terbaca */
+    font-weight: 600;
+}
+
+tbody td small {
+    color: #266CA9 !important;  /* biru terang untuk kategori */
+}
+
+/* ===== HARGA & SUBTOTAL ===== */
+tbody td:nth-child(2),
+tbody td:nth-child(4) {
+    color: #0F2573 !important;
+    font-weight: 600;
+}
+
+/* ===== TOMBOL UPDATE ===== */
+.btn-outline-secondary {
+    border-color: #0F2573 !important;
+    color: #0F2573 !important;
+    font-weight: 600;
+}
+
+.btn-outline-secondary:hover {
+    background: #0F2573 !important;
+    color: white !important;
+}
+
+/* ===== TOMBOL HAPUS ===== */
+.btn-danger,
+.btn-danger:focus {
+    background: #041D56 !important;
+    border: none !important;
+}
+
+.btn-danger:hover {
+    background: #01082D !important;
+}
+/* ===== CARD SUMMARY ===== */
+.card-body {
+    background: linear-gradient(160deg, #041D56 0%, #01082D 100%) !important;
+    border-radius: 12px !important;
+    color: #ADE1FB !important;
+}
+
+/* Title Ringkasan */
+.card-title {
+    color: #ADE1FB !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 8px rgba(173,225,251,0.4);
+}
+
+/* Label */
+.card-body span {
+    color: #D2ECFF !important;
+}
+
+/* Value total */
+.fs-5 strong {
+    color: #ADE1FB !important;
+    text-shadow: 0 0 6px rgba(173,225,251,0.3);
+}
+
+/* Garis divider */
+.card-body > div {
+    border-bottom: 1px solid rgba(173,225,251,0.12) !important;
+}
+
+/* Tombol Checkout */
+.btn-primary {
+    background: #266CA9 !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background: #0F2573 !important;
+    box-shadow: 0 0 10px rgba(173,225,251,0.4);
+}
+
+/* Tombol Kosongkan */
+.btn-outline-danger {
+    border: 1px solid #266CA9 !important;
+    color: #ADE1FB !important;
+}
+
+.btn-outline-danger:hover {
+    background: #266CA9 !important;
+    color: white !important;
+}
+.card {
+    background: rgba(1, 8, 45, 0.6) !important;
+    border: 1px solid rgba(38,108,169,0.2) !important;
+}
+
 </style>
 
     @if(session('success'))
