@@ -96,7 +96,7 @@ body.day-mode .products-hero {
 }
 
 /* Toggle */
-#modeToggle { font-size: 20px; }
+#modeToggle { font-size: 20px; position: absolute; top: 12px; right: 12px; z-index: 999; }
 
 /* Product hover */
 .hover-top {
@@ -106,6 +106,11 @@ body.day-mode .products-hero {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
+
+/* Cloud layer - absolute so clouds don't shift layout */
+.cloud-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.cloud { position: absolute; background: rgba(255,255,255,0.75); filter: blur(10px); border-radius: 999px; opacity: .6; transform: translateX(0); }
+@keyframes cloudMove { 0% { transform: translateX(-10%);} 100% { transform: translateX(120%);} }
 
           /* Night mode (prefers-color-scheme: dark) */
           @media (prefers-color-scheme: dark) {
