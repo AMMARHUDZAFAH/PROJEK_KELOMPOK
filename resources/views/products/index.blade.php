@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="text-center mb-4">
             <h2 class="fw-bold text-dark display-6">🛍️ Temukan Gadget Impianmu</h2>
                     <p class="text-muted">Jelajahi koleksi elektronik terbaik dengan harga terjangkau</p>
-                    <div class="hero-night-badge d-none align-items-center ms-auto" style="font-size:.9rem; padding:.25rem .6rem; background:rgba(255,255,255,0.06); border-radius:.5rem; border:1px solid rgba(255,255,255,0.04); color:#fff;">
+                    <div class="hero-night-badge d-none align-items-center ms-auto" style="font-size:.9rem; padding:.25rem .6rem; background:rgba(255,255,255,0.06); border-radius:.5rem; border:1px solid rgba(255,255,255,0.04); color:#fff; position:absolute; top:12px; right:12px; z-index:3;">
                         🌙 Mode Malam Aktif
                     </div>
         </div>
