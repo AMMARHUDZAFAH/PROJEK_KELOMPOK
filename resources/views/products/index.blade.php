@@ -2,9 +2,39 @@
 
 @section('content')
 <div class="container py-5">
+    <style>
+        /* Page hero background for product listing */
+        .products-hero {
+            background: linear-gradient(135deg, #0b5ed7 0%, #60a5fa 55%, #eaf6ff 100%);
+            border-radius: 14px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 40px rgba(11,94,215,0.08);
+            margin-bottom: 1rem;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .products-hero .display-6 { color: rgba(255,255,255,0.95); }
+        .products-hero .text-muted { color: rgba(255,255,255,0.85); }
+        .products-hero .card { background: rgba(255,255,255,0.95); }
+
+        /* Card accent & hover enhancement */
+        .anim-card { transition: transform .22s ease, box-shadow .22s ease; }
+        .anim-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 12px 36px rgba(11,94,215,0.12); }
+
+        /* Staggered reveal for product cards */
+        .anim-fade { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+        .anim-fade.visible { opacity: 1; transform: none; }
+
+        /* Decorative circle */
+        .products-hero:after{ content:''; position:absolute; right:-120px; top:-60px; width:360px; height:360px; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), rgba(255,255,255,0) 40%); transform: rotate(15deg); pointer-events:none; }
+
+        /* Improve price / badge contrast */
+        .card .badge { background: rgba(255,255,255,0.95); color: #000; }
+    </style>
     
     <!-- 1. HEADER & SEARCH BAR (Ada animasinya juga) -->
-    <div class="row justify-content-center mb-5 product-card-anim">
+    <div class="row justify-content-center mb-5 product-card-anim products-hero anim-fade">
         <div class="col-lg-10">
             <div class="text-center mb-4">
                 <h2 class="fw-bold text-dark display-6">🛍️ Temukan Gadget Impianmu</h2>
@@ -12,7 +42,7 @@
             </div>
 
             <!-- Card Pencarian -->
-            <div class="card shadow-sm border-0" style="border-radius: 15px;">
+            <div class="card shadow-sm border-0 anim-card" style="border-radius: 15px;">
                 <div class="card-body p-4">
                     <form method="GET" class="row g-3 align-items-end">
                         <div class="col-md-5">
@@ -47,7 +77,7 @@
         @forelse($products as $p)
         <!-- Tambah class 'product-card-anim' disini biar muncul satu-satu -->
         <div class="col-md-3 mb-4 product-card-anim">
-            <div class="card h-100 border-0 shadow-sm hover-top" style="border-radius: 12px; overflow: hidden;">
+            <div class="card h-100 border-0 shadow-sm hover-top anim-card anim-fade" style="border-radius: 12px; overflow: hidden;">
                 
                 <!-- Gambar Produk -->
                 <div class="position-relative" style="height: 220px; background: #f8f9fa;">
@@ -80,14 +110,14 @@
                         @endif
                     </div>
 
-                    <a href="{{ route('products.show', $p) }}" class="btn btn-outline-primary w-100 mt-auto rounded-pill fw-bold">
+                    <a href="{{ route('products.show', $p) }}" class="btn btn-outline-primary w-100 mt-auto rounded-pill fw-bold btn-animate">
                         Lihat Detail
                     </a>
                 </div>
             </div>
         </div>
         @empty
-            <div class="col-12 text-center py-5 product-card-anim">
+            <div class="col-12 text-center py-5 product-card-anim anim-card anim-fade">
                 <div class="mb-3" style="font-size: 4rem;">😢</div>
                 <h4 class="fw-bold">Produk tidak ditemukan</h4>
                 <p class="text-muted">Coba cari dengan kata kunci lain atau reset filter.</p>
@@ -111,5 +141,23 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
+/* Button micro interaction */
+.btn-animate { transition: transform .12s ease, box-shadow .12s ease; }
+.btn-animate:active { transform: scale(.99); }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        // reveal stagger
+        var els = document.querySelectorAll('.anim-fade');
+        els.forEach(function(el, idx){ setTimeout(function(){ el.classList.add('visible'); }, idx * 70); });
+
+        // small shimmer for product image area when image absent
+        document.querySelectorAll('.position-relative').forEach(function(el){
+            if(!el.querySelector('img')) {
+                el.style.background = 'linear-gradient(90deg, #f8f9fa 20%, #eef6ff 50%, #f8f9fa 80%)';
+            }
+        });
+    });
+}</script>
 @endsection
