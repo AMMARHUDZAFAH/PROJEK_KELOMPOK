@@ -3,83 +3,150 @@
 @section('content')
 <div class="page-bg">
     <div class="page-stars" aria-hidden="true"></div>
+    <div class="comet" aria-hidden="true"></div> <!-- ★ KOMET -->
+
     <div class="container py-5">
     <style>
-        /* Page full background + hero */
-        .page-bg { min-height: 100vh; position: relative; overflow: hidden; background: linear-gradient(180deg,#e6f4ff 0%, #f0fbff 40%, #fff 100%); }
-            .page-bg { min-height: 100vh; position: relative; overflow: hidden; background: linear-gradient(180deg,#e6f4ff 0%, #f0fbff 40%, #fff 100%); }
-        .page-bg::before{ content:''; position:absolute; inset:0; background: radial-gradient(circle at 10% 20%, rgba(11,94,215,0.06), transparent 20%), radial-gradient(circle at 80% 80%, rgba(96,165,250,0.03), transparent 20%); pointer-events:none; z-index:0; }
-        .page-bg .page-stars { position:absolute; inset:0; z-index:0; pointer-events:none; }
-        .page-bg .page-stars .star{ position:absolute; width:4px; height:4px; border-radius:50%; background: rgba(255,255,255,0.9); box-shadow:0 0 12px rgba(13,110,253,0.45); mix-blend-mode: screen; }
-        .page-bg .container{ position:relative; z-index:1; }
+        /* ============================================================
+           1. BACKGROUND LANGIT MALAM
+        ============================================================ */
+        .page-bg { 
+            min-height: 100vh; 
+            position: relative; 
+            overflow: hidden; 
+            background: linear-gradient(180deg,#001b33 0%, #00264d 40%, #003366 100%);
+        }
+        .page-bg::before{
+            content:''; 
+            position:absolute; 
+            inset:0; 
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15), transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1), transparent 25%);
+            pointer-events:none; 
+            z-index:0;
+        }
 
-        /* Products hero + falling stars */
-        .products-hero { background: linear-gradient(135deg, #0d6efd 0%, #2b8cff 40%, #7ec8ff 100%); border-radius: 14px; padding: 1.5rem; box-shadow: 0 18px 50px rgba(13,110,253,0.14); margin-bottom: 1rem; color: #fff; overflow: hidden; }
-            .products-hero { background: linear-gradient(135deg, #0d6efd 0%, #2b8cff 40%, #7ec8ff 100%); border-radius: 14px; padding: 1.5rem; box-shadow: 0 18px 50px rgba(13,110,253,0.14); margin-bottom: 1rem; color: #fff; overflow: hidden; }
-        .products-hero .display-6, .products-hero .text-muted { color: rgba(255,255,255,0.95); }
-        .products-hero .card{ background: rgba(255,255,255,0.95); }
-        .products-hero > .products-stars { position: absolute; inset: 0 0 auto 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .products-hero .hero-content { position: relative; z-index: 2; }
+        /* ============================================================
+           2. BINTANG HALUS DI LATAR
+        ============================================================ */
+        .page-bg .page-stars .star { 
+            position:absolute;
+            width:3px; 
+            height:3px; 
+            border-radius:50%; 
+            background: rgba(255,255,255,0.95);
+            box-shadow:0 0 8px rgba(255,255,255,0.7);
+            mix-blend-mode:screen;
+        }
 
-        /* stars */
-        .products-stars .star{ position: absolute; top: -10px; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.98); box-shadow: 0 0 14px rgba(13,110,253,0.65); opacity: 0.98; transform-origin: center; mix-blend-mode: screen; }
-        @keyframes fall { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(120vh) translateX(30px) rotate(270deg); opacity: 0; } }
+        /* ============================================================
+           3. HERO GRADIENT
+        ============================================================ */
+        .products-hero { 
+            background: linear-gradient(135deg,#0055cc 0%, #1a6fff 40%, #66aaff 100%);
+            border-radius: 14px; 
+            padding: 1.5rem; 
+            box-shadow: 0 18px 50px rgba(13,110,253,0.25); 
+            margin-bottom: 1rem; 
+            color: #fff; 
+            overflow: hidden; 
+            position:relative;
+        }
+        .products-stars .star {
+            background: rgba(255,255,255,0.98); 
+            box-shadow:0 0 12px rgba(255,255,255,0.8);
+        }
 
-        /* keep product cards clear and images visible */
-        .card .badge { background: #fff; color: #000; }
+        /* ============================================================
+           4. ANIMASI BINTANG JATOH
+        ============================================================ */
+        @keyframes fall { 
+            0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 1; } 
+            100% { transform: translateY(120vh) translateX(40px) rotate(270deg); opacity: 0; } 
+        }
+
+        /* ============================================================
+           5. KOMET MELINTAS
+        ============================================================ */
+        .comet {
+            position: absolute;
+            top: -50px;
+            left: -200px;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white, 0 0 20px white;
+            opacity: 0;
+            transform: rotate(45deg);
+        }
+
+        @keyframes cometFly {
+            0% {
+                opacity: 0;
+                transform: translate(-100px, -100px) scale(0.6) rotate(45deg);
+            }
+            5% {
+                opacity: 1;
+            }
+            40% {
+                transform: translate(800px, 600px) scale(1.2) rotate(45deg);
+                opacity: 1;
+            }
+            60% {
+                opacity: 0;
+            }
+            100% {
+                transform: translate(900px, 700px) scale(1.2) rotate(45deg);
+            }
+        }
     </style>
-    
-    <!-- 1. HEADER & SEARCH BAR (Ada animasinya juga) -->
-        <div class="row justify-content-center mb-5 product-card-anim products-hero anim-fade position-relative">
-            <div class="products-stars" aria-hidden="true"></div>
-                <script>
-                    // Falling stars effect in product hero
-                    document.addEventListener('DOMContentLoaded', function(){
-                        var starsWrapper = document.querySelector('.products-stars');
-                        if(!starsWrapper) return;
-                        var starCount = 12;
-                        var wrapperWidth = starsWrapper.offsetWidth || document.documentElement.clientWidth;
-                        for(var i=0;i<starCount;i++){
-                            var s = document.createElement('span');
-                            s.className = 'star';
-                            var left = Math.random() * 100;
-                            var size = Math.random() * 5 + 4; // 4..9
-                            var duration = Math.random() * 6 + 4; // 4..10s
-                            var delay = Math.random() * -duration; // start at random progress
-                            s.style.left = left + '%';
-                            s.style.width = size + 'px';
-                            s.style.height = size + 'px';
-                            s.style.animation = 'fall ' + duration + 's linear ' + delay + 's infinite';
-                            s.setAttribute('aria-hidden','true');
-                            starsWrapper.appendChild(s);
-                        }
-                        // page-level stars
-                        var pageStarsWrap = document.querySelector('.page-stars');
-                        if(pageStarsWrap){
-                            var pageStarCount = 25;
-                            for(var j=0;j<pageStarCount;j++){
-                                var ps = document.createElement('span');
-                                ps.className = 'star';
-                                var leftp = Math.random() * 100;
-                                var sizep = Math.random() * 3 + 2; // 2..5
-                                var durationp = Math.random() * 12 + 8; // 8..20s
-                                var delayp = Math.random() * -durationp;
-                                ps.style.left = leftp + '%';
-                                ps.style.width = sizep + 'px';
-                                ps.style.height = sizep + 'px';
-                                ps.style.animation = 'fall ' + durationp + 's linear ' + delayp + 's infinite';
-                                pageStarsWrap.appendChild(ps);
-                            }
-                        }
-                    });
-                </script>
+
+    <script>
+        /* ============================================================
+           6. GENERATE BINTANG + KOMET OTOMATIS
+        ============================================================ */
+
+        document.addEventListener('DOMContentLoaded', function(){
+
+            /* --- Bintang di background --- */
+            var pageStarsWrap = document.querySelector('.page-stars');
+            var pageStarCount = 30;
+            for (var j = 0; j < pageStarCount; j++) {
+                var s = document.createElement('span');
+                s.className = 'star';
+                s.style.left = Math.random() * 100 + '%';
+                s.style.top = Math.random() * 100 + '%';
+                s.style.opacity = Math.random() * 0.9;
+                s.style.transform = 'scale(' + (Math.random()*1.5+0.4) + ')';
+                pageStarsWrap.appendChild(s);
+            }
+
+            /* --- Komet melintas tiap 5-10 detik --- */
+            const comet = document.querySelector('.comet');
+            function summonComet() {
+                let delay = Math.random() * 5000 + 5000; // 5s - 10s
+                comet.style.animation = 'none';
+                void comet.offsetWidth; // reset animation
+                comet.style.animation = `cometFly 3s ease-out`;
+                setTimeout(summonComet, delay);
+            }
+            summonComet();
+        });
+    </script>
+
+
+    <!-- HERO SECTION + SEARCH -->
+    <div class="row justify-content-center mb-5 product-card-anim products-hero anim-fade position-relative">
+        <div class="products-stars" aria-hidden="true"></div>
+
         <div class="col-lg-10 hero-content">
             <div class="text-center mb-4">
                 <h2 class="fw-bold text-dark display-6">🛍️ Temukan Gadget Impianmu</h2>
                 <p class="text-muted">Jelajahi koleksi elektronik terbaik dengan harga terjangkau</p>
             </div>
 
-            <!-- Card Pencarian -->
             <div class="card shadow-sm border-0" style="border-radius: 15px;">
                 <div class="card-body p-4">
                     <form method="GET" class="row g-3 align-items-end">
@@ -100,24 +167,21 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-primary w-100 fw-bold h-100" style="min-height: 45px;">
-                                Filter & Cari
-                            </button>
+                            <button class="btn btn-primary w-100 fw-bold h-100" style="min-height: 45px;">Filter & Cari</button>
                         </div>
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- 2. DAFTAR PRODUK -->
+    <!-- PRODUK -->
     <div class="row">
         @forelse($products as $p)
-        <!-- Tambah class 'product-card-anim' disini biar muncul satu-satu -->
         <div class="col-md-3 mb-4 product-card-anim">
             <div class="card h-100 border-0 shadow-sm hover-top" style="border-radius: 12px; overflow: hidden;">
-                
-                <!-- Gambar Produk -->
+
                 <div class="position-relative" style="height: 220px; background: #f8f9fa;">
                     @if($p->image)
                         <img src="{{ asset('storage/'.$p->image) }}" class="w-100 h-100" style="object-fit: cover;" alt="{{ $p->name }}">
@@ -126,19 +190,16 @@
                             <small>No Image</small>
                         </div>
                     @endif
-                    
-                    <!-- Badge Kategori (Nempel di gambar) -->
+
                     @if($p->category)
-                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm" style="font-weight: 500;">
+                        <span class="badge bg-white text-dark position-absolute top-0 start-0 m-3 shadow-sm">
                             {{ $p->category->name }}
                         </span>
                     @endif
                 </div>
 
-                <!-- Info Produk -->
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark mb-1">{{ Str::limit($p->name, 40) }}</h5>
-                    
                     <div class="mb-3">
                         <h5 class="text-primary fw-bold mb-0">Rp {{ number_format($p->price, 0, ',', '.') }}</h5>
                         @if($p->stock > 0)
@@ -148,31 +209,29 @@
                         @endif
                     </div>
 
-                    <a href="{{ route('products.show', $p) }}" class="btn btn-outline-primary w-100 mt-auto rounded-pill fw-bold">
-                        Lihat Detail
-                    </a>
+                    <a href="{{ route('products.show', $p) }}" class="btn btn-outline-primary w-100 mt-auto rounded-pill fw-bold">Lihat Detail</a>
                 </div>
             </div>
         </div>
+
         @empty
-            <div class="col-12 text-center py-5 product-card-anim">
-                <div class="mb-3" style="font-size: 4rem;">😢</div>
-                <h4 class="fw-bold">Produk tidak ditemukan</h4>
-                <p class="text-muted">Coba cari dengan kata kunci lain atau reset filter.</p>
-                <a href="{{ route('products.index') }}" class="btn btn-secondary rounded-pill px-4">Reset Pencarian</a>
-            </div>
+        <div class="col-12 text-center py-5 product-card-anim">
+            <div class="mb-3" style="font-size: 4rem;">😢</div>
+            <h4 class="fw-bold">Produk tidak ditemukan</h4>
+            <p class="text-muted">Coba cari dengan kata kunci lain atau reset filter.</p>
+            <a href="{{ route('products.index') }}" class="btn btn-secondary rounded-pill px-4">Reset Pencarian</a>
+        </div>
         @endforelse
     </div>
 
-    <!-- Pagination -->
     <div class="mt-5 d-flex justify-content-center">
         {{ $products->links() }}
     </div>
+
     </div>
 </div>
 
 <style>
-/* Tambahan CSS kecil khusus halaman ini */
 .hover-top {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
