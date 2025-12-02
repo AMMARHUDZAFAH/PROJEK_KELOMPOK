@@ -369,3 +369,126 @@ body.day-mode .table th,
 body.day-mode .table td {
     color: #333 !important;
 }
+
+/* ============ COMPREHENSIVE DARK MODE TEXT COLOR FIXES ============ */
+
+/* Fix .text-muted to be readable in dark mode */
+body:not(.day-mode) .text-muted,
+body:not(.day-mode) small.text-muted {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+body.day-mode .text-muted,
+body.day-mode small.text-muted {
+    color: #6c757d !important;
+}
+
+/* Fix .text-secondary */
+body:not(.day-mode) .text-secondary {
+    color: rgba(255,255,255,0.75) !important;
+}
+
+body.day-mode .text-secondary {
+    color: #6c757d !important;
+}
+
+/* Fix opacity-50 and opacity-75 text color in dark mode */
+body:not(.day-mode) .opacity-50,
+body:not(.day-mode) .opacity-75 {
+    color: rgba(255,255,255,0.9) !important;
+    opacity: 1 !important;
+}
+
+body.day-mode .opacity-50,
+body.day-mode .opacity-75 {
+    color: rgba(0,0,0,0.85) !important;
+    opacity: 1 !important;
+}
+
+/* Fix form help text */
+body:not(.day-mode) .form-text {
+    color: rgba(255,255,255,0.75) !important;
+}
+
+body.day-mode .form-text {
+    color: #6c757d !important;
+}
+
+/* Fix icon colors in dark mode when used with text-muted */
+body:not(.day-mode) .bi-search.text-muted,
+body:not(.day-mode) i.text-muted {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+/* Fix small text color */
+body:not(.day-mode) small {
+    color: rgba(255,255,255,0.85) !important;
+}
+
+body.day-mode small {
+    color: #6c757d !important;
+}
+
+/* Fix text inside cards in dark mode */
+body:not(.day-mode) .card p,
+body:not(.day-mode) .card small,
+body:not(.day-mode) .card label {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* Ensure links in muted context are still clickable */
+body:not(.day-mode) .text-muted a,
+body:not(.day-mode) small a {
+    color: #64b5f6 !important;
+    text-decoration: underline !important;
+}
+
+body.day-mode .text-muted a,
+body.day-mode small a {
+    color: #0056b3 !important;
+}
+
+/* Fix placeholder and helper text */
+body:not(.day-mode) ::placeholder {
+    color: rgba(255,255,255,0.6) !important;
+    opacity: 1 !important;
+}
+
+body.day-mode ::placeholder {
+    color: #adb5bd !important;
+    opacity: 1 !important;
+}
+
+/* Fix text in list items */
+body:not(.day-mode) .list-group-item p,
+body:not(.day-mode) .list-group-item small {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* Fix text in modals and overlays */
+body:not(.day-mode) .modal-body,
+body:not(.day-mode) .offcanvas-body {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Fix dropdown text */
+body:not(.day-mode) .dropdown-item {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+body:not(.day-mode) .dropdown-item:hover,
+body:not(.day-mode) .dropdown-item:focus {
+    background-color: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+}
+
+/* Ensure badge text is readable */
+body:not(.day-mode) .badge {
+    color: #fff !important;
+}
+
+body:not(.day-mode) .badge a {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* End dark mode text fixes */
