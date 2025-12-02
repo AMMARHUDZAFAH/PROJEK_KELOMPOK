@@ -309,3 +309,29 @@ body:not(.day-mode) .form-label,
 body:not(.day-mode) label {
     color: rgba(255,255,255,0.9) !important;
 }
+
+/* Fix table text in dark mode cards */
+body:not(.day-mode) .card.bg-transparent th,
+body:not(.day-mode) .card.bg-transparent td,
+body:not(.day-mode) .table th,
+body:not(.day-mode) .table td {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Ensure strong text in tables is visible */
+body:not(.day-mode) .table strong {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Make links in tables readable */
+body:not(.day-mode) .table a {
+    color: #fff !important;
+}
+
+/* Day mode: ensure text is dark on light backgrounds */
+body.day-mode .card.bg-transparent th,
+body.day-mode .card.bg-transparent td,
+body.day-mode .table th,
+body.day-mode .table td {
+    color: #333 !important;
+}
