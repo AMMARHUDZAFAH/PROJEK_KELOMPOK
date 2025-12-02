@@ -14,7 +14,7 @@
 
     /* ===== BACKGROUND GRADIENT UTAMA ===== */
     body {
-        background: linear-gradient(160deg, #01082D 0%, #041D56 40%, #0F2573 100%) !important;
+        background: linear-gradient(160deg, #01082D 0%, #00264d 40%, #003366 100%) !important;
         min-height: 100vh;
         padding-bottom: 40px;
     }
