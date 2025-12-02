@@ -31,6 +31,9 @@
     background: linear-gradient(180deg,#001b33 0%, #00264d 40%, #003366 100%);
 }
 
+/* Default (night) mode text color: white */
+.page-bg, .page-bg * { color: #fff !important; }
+
 .page-bg::before{
     content:''; 
     position:absolute; 
@@ -79,6 +82,9 @@
 body.day-mode .page-bg {
     background: linear-gradient(180deg,#bfe8ff 0%, #e9f7ff 40%, #ffffff 100%);
 }
+
+/* Day mode: all text inside page-bg becomes black */
+body.day-mode .page-bg, body.day-mode .page-bg * { color: #000 !important; }
 
 body.day-mode .page-bg::before {
     background: 
