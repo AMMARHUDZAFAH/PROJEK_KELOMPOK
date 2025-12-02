@@ -318,6 +318,40 @@ body:not(.day-mode) .table td {
     color: rgba(255,255,255,0.95) !important;
 }
 
+/* Make cards have subtle dark background in dark mode instead of transparent */
+body:not(.day-mode) .card.bg-transparent {
+    background-color: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* Fix table text in dark mode cards */
+body:not(.day-mode) .card.bg-transparent th,
+body:not(.day-mode) .card.bg-transparent td,
+body:not(.day-mode) .table th,
+body:not(.day-mode) .table td {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Add visible border and subtle background to table rows in dark mode */
+body:not(.day-mode) .table {
+    border-collapse: collapse;
+}
+
+body:not(.day-mode) .table thead th {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-bottom: 2px solid rgba(255,255,255,0.1) !important;
+    color: rgba(255,255,255,0.95) !important;
+}
+
+body:not(.day-mode) .table tbody tr {
+    background-color: rgba(255,255,255,0.01) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+body:not(.day-mode) .table tbody tr:hover {
+    background-color: rgba(255,255,255,0.06) !important;
+}
+
 /* Ensure strong text in tables is visible */
 body:not(.day-mode) .table strong {
     color: rgba(255,255,255,0.95) !important;
