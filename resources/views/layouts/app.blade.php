@@ -25,8 +25,10 @@
         <div class="cloud-layer"></div>
     </div>
 
-    <!-- 2. NAVBAR -->
-    @include('layouts.navbar')
+ <!-- 2. NAVBAR (Hanya muncul jika BUKAN di halaman login/register) -->
+    @unless(request()->is('login') || request()->is('register'))
+        @include('layouts.navbar')
+    @endunless
 
     <!-- 3. TOMBOL TOGGLE DRAGGABLE (Bisa Digeser) -->
     <!-- ID 'modeToggleWrapper' penting buat JS draggable -->

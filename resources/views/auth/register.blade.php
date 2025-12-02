@@ -1,34 +1,19 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - ElectroHub</title>
+@extends('layouts.app')
 
-    <!-- 1. Link Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- 2. Link CSS Custom (Wajib ada biar gak polos) -->
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-
-    <!-- 3. Font Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body class="login-body">
-
-    <!-- Card Register (Ada class register-card biar agak lebar) -->
-    <div class="card p-4 login-card register-card">
+@section('content')
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    
+    <!-- Animasi muncul -->
+    <div class="card p-4 p-md-5 login-card product-card-anim" style="width: 100%; max-width: 480px;">
         
         <div class="text-center mb-4">
-            <div style="font-size: 2.5rem;">📝</div>
-            <h4 class="fw-bold text-dark mt-2">Join ElectroHub</h4>
-            <p class="text-muted small">Buat akun barumu sekarang</p>
+            <div style="font-size: 3rem;">📝</div>
+            <h3 class="fw-bold mt-2">Join ElectroHub</h3>
+            <p class="opacity-75 small">Buat akun barumu sekarang</p>
         </div>
 
-        <!-- Alert Error Kalau Salah Input -->
         @if ($errors->any())
-            <div class="alert alert-danger py-2 small mb-3 border-0 shadow-sm">
+            <div class="alert alert-danger py-2 small mb-4 border-0 shadow-sm rounded-3">
                 <ul class="mb-0 ps-3">
                     @foreach ($errors->all() as $err)
                         <li>{{ $err }}</li>
@@ -40,47 +25,41 @@
         <form method="POST" action="/register">
             @csrf
 
-            <!-- Nama Lengkap -->
             <div class="form-floating mb-3">
                 <input type="text" name="name" class="form-control" id="nameInput" placeholder="Nama Lengkap" required>
-                <label for="nameInput">Nama Lengkap</label>
+                <label for="nameInput" class="text-dark">Nama Lengkap</label>
             </div>
 
-            <!-- Email -->
             <div class="form-floating mb-3">
                 <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                <label for="emailInput">Alamat Email</label>
+                <label for="emailInput" class="text-dark">Alamat Email</label>
             </div>
 
-            <!-- Password & Confirm (Sebelahan) -->
-            <div class="row g-2 mb-3">
+            <div class="row g-2 mb-4">
                 <div class="col-6">
                     <div class="form-floating">
                         <input type="password" name="password" class="form-control" id="passInput" placeholder="Password" required>
-                        <label for="passInput">Password</label>
+                        <label for="passInput" class="text-dark">Password</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-floating">
                         <input type="password" name="password_confirmation" class="form-control" id="confPassInput" placeholder="Confirm" required>
-                        <label for="confPassInput">Confirm</label>
+                        <label for="confPassInput" class="text-dark">Confirm</label>
                     </div>
                 </div>
             </div>
 
-            <!-- Tombol Daftar (Warna Hijau) -->
-            <button class="btn btn-success w-100 py-2 fw-bold shadow-sm">
-                Daftar Sekarang
+            <button class="btn btn-success w-100 py-3 fw-bold rounded-pill shadow-sm mb-3">
+                ✨ Daftar Sekarang
             </button>
         </form>
 
-        <p class="text-center mt-4 mb-0 small text-muted">
-            Sudah punya akun? <a href="/login" class="text-decoration-none fw-bold text-primary">Login disini</a>
-        </p>
+        <div class="text-center mt-3">
+            <span class="opacity-75 small">Sudah punya akun?</span>
+            <a href="/login" class="text-decoration-none fw-bold text-primary ms-1">Login disini</a>
+        </div>
     </div>
 
-    <!-- Script JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-</body>
-</html>
+</div>
+@endsection

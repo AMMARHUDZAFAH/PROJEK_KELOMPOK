@@ -1,43 +1,36 @@
-/* --- ANIMASI LOGIN PAGE (Updated) --- */
-.login-body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    
-    /* Centering Magic */
-    min-height: 100vh;
-    display: flex;
-    align-items: center;     /* Tengah Vertikal */
-    justify-content: center; /* Tengah Horizontal */
-    margin: 0;
-    padding: 20px; /* Jarak aman biar gak nempel tepi layar HP */
-}
+/* --- LOGIN & REGISTER CARD (Global Style) --- */
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+/* Hapus .login-body lama, kita ikut body global */
 
 .login-card {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 16px; /* Lebih membulat dikit */
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    
-    /* Ukuran Pas (Gak Kegedean) */
-    width: 100%;           /* Di HP dia full width */
-    max-width: 400px;      /* Di Laptop mentok segini (Ukuran ideal) */
-    
-    /* Shadow Soft */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    
-    /* 3D Props */
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
+    /* Mode Malam: Transparan (Glass) */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    color: #fff; /* Teks Putih */
 }
 
-/* Khusus Register boleh lebih lebar dikit biar muat 2 kolom */
-.register-card {
-    max-width: 450px; 
+/* Mode Siang: Putih Bersih */
+body.day-mode .login-card {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    color: #333; /* Teks Hitam */
 }
+
+/* Inputan di Login biar enak dilihat */
+.login-card .form-control {
+    background: rgba(255, 255, 255, 0.9); /* Agak putih biar input jelas */
+    border: none;
+    color: #333;
+}
+.login-card .form-control:focus {
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25);
+}
+
+/* Link kecil di bawah */
+.login-link { color: rgba(255,255,255,0.7); }
+body.day-mode .login-link { color: #666; }
