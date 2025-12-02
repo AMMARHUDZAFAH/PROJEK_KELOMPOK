@@ -6,8 +6,16 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 
-// Public route
-Route::get('/', fn() => view('welcome'));
+// Public route: redirect guests to login, authenticated users to their dashboard
+Route::get('/', function () {
+    if (auth()->check()) {
+        return auth()->user()->role === 'admin'
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('user.dashboard');
+    }
+
+    return redirect()->route('login');
+});
 
 // Public product browsing
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');

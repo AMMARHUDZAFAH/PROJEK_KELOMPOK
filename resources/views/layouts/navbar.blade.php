@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/">🛒 ElectroHub</a>
+        @auth
+            <a class="navbar-brand fw-bold" href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}">🛒 ElectroHub</a>
+        @else
+            <a class="navbar-brand fw-bold" href="{{ route('login') }}">🛒 ElectroHub</a>
+        @endauth
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
