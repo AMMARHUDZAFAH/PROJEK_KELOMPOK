@@ -12,10 +12,11 @@
 
     <!-- Toggle Mode -->
     <button id="modeToggle" 
-        class="position-fixed top-0 end-0 m-4 btn btn-light shadow-sm rounded-circle p-2"
-        style="z-index:999; width:45px; height:45px;">
-        🌙
+        class="btn btn-light shadow-sm rounded-circle p-1 ms-2 mt-1"
+        style="width:35px; height:35px; font-size:16px;">
+    🌙
     </button>
+
 
     <div class="container py-5">
 
@@ -88,30 +89,6 @@ body.day-mode .page-bg::before {
 body.day-mode .page-stars .star { opacity: 0; }
 body.day-mode .comet { opacity: 0 !important; }
 
-/* Awan mode siang */
-.cloud-layer {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:5;
-}
-
-.cloud {
-    position:absolute;
-    background: white;
-    border-radius: 50px;
-    filter: blur(2px);
-    opacity: .9;
-}
-
-@keyframes cloudMove {
-    from { transform: translateX(-200px); }
-    to { transform: translateX(140vw); }
-}
 
 /* Hero mode siang */
 body.day-mode .products-hero {
@@ -129,6 +106,22 @@ body.day-mode .products-hero {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
+
+          /* Night mode (prefers-color-scheme: dark) */
+          @media (prefers-color-scheme: dark) {
+                body, .page-bg { background: linear-gradient(180deg,#05071a 0%, #07122a 45%, #071a2b 100%); color: #fff; }
+                .products-hero { background: linear-gradient(135deg, #02102a 0%, #022444 50%, #083057 100%); box-shadow: 0 22px 64px rgba(3, 18, 45, 0.6); }
+                .products-hero .display-6, .products-hero .text-muted { color: rgba(255,255,255,0.95); }
+                .products-hero .card { background: rgba(255,255,255,0.04); color: #fff; border: 1px solid rgba(255,255,255,0.04); }
+                .card .card-body, .card .card-body p, .card .card-title { color: #fff; }
+                .card .badge { background: rgba(255,255,255,0.06); color: #fff; }
+                .text-muted{ color: rgba(255,255,255,0.6) !important; }
+                .form-control, .form-select { background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(255,255,255,0.06); }
+                .btn-outline-primary { color: #fff; border-color: rgba(255,255,255,0.12); }
+                .btn-primary { background: linear-gradient(90deg,#1d7cf6 0%, #4ca7ff 100%); border-color: transparent; }
+                .page-bg .page-stars .star, .products-stars .star { box-shadow: 0 0 18px rgba(13,110,253,0.9); background: rgba(255,255,255,0.95); mix-blend-mode: screen; }
+                .hero-night-badge{ display:inline-flex !important; }
+          }
 </style>
 
 <script>
@@ -228,7 +221,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="col-lg-10 hero-content">
         <div class="text-center mb-4">
             <h2 class="fw-bold text-dark display-6">🛍️ Temukan Gadget Impianmu</h2>
-            <p class="text-muted">Jelajahi koleksi elektronik terbaik dengan harga terjangkau</p>
+                    <p class="text-muted">Jelajahi koleksi elektronik terbaik dengan harga terjangkau</p>
+                    <div class="hero-night-badge d-none align-items-center ms-auto" style="font-size:.9rem; padding:.25rem .6rem; background:rgba(255,255,255,0.06); border-radius:.5rem; border:1px solid rgba(255,255,255,0.04); color:#fff;">
+                        🌙 Mode Malam Aktif
+                    </div>
         </div>
 
         <div class="card shadow-sm border-0" style="border-radius: 15px;">
