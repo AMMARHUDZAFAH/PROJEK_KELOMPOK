@@ -6,23 +6,18 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 
-// Public route: redirect guests to login, authenticated users to their dashboard
+// Public route: always redirect root to login (site requires explicit login/register first)
 Route::get('/', function () {
-    if (auth()->check()) {
-        return auth()->user()->role === 'admin'
-            ? redirect()->route('admin.dashboard')
-            : redirect()->route('user.dashboard');
-    }
-
     return redirect()->route('login');
 });
 
-// Public product browsing
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{product}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
+// Product browsing moved into auth group below so users must login to view products
 
 // Cart routes (authenticated users)
 Route::middleware('auth')->group(function () {
+    // Product browsing (requires login now)
+    Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/{product}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{product}', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update/{cartItem}', [\App\Http\Controllers\CartController::class, 'updateQuantity'])->name('cart.update');
