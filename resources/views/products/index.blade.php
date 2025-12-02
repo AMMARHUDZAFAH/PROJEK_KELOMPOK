@@ -6,21 +6,23 @@
     <div class="container py-5">
     <style>
         /* Page full background + hero */
-        .page-bg { min-height: 100vh; position: relative; overflow: hidden; background: linear-gradient(180deg,#f0f6ff 0%, #fff 60%); }
+        .page-bg { min-height: 100vh; position: relative; overflow: hidden; background: linear-gradient(180deg,#e6f4ff 0%, #f0fbff 40%, #fff 100%); }
+            .page-bg { min-height: 100vh; position: relative; overflow: hidden; background: linear-gradient(180deg,#e6f4ff 0%, #f0fbff 40%, #fff 100%); }
         .page-bg::before{ content:''; position:absolute; inset:0; background: radial-gradient(circle at 10% 20%, rgba(11,94,215,0.06), transparent 20%), radial-gradient(circle at 80% 80%, rgba(96,165,250,0.03), transparent 20%); pointer-events:none; z-index:0; }
         .page-bg .page-stars { position:absolute; inset:0; z-index:0; pointer-events:none; }
-        .page-bg .page-stars .star{ position:absolute; width:4px; height:4px; border-radius:50%; background: rgba(255,255,255,0.6); box-shadow:0 0 10px rgba(255,255,255,0.75); }
+        .page-bg .page-stars .star{ position:absolute; width:4px; height:4px; border-radius:50%; background: rgba(255,255,255,0.9); box-shadow:0 0 12px rgba(13,110,253,0.45); mix-blend-mode: screen; }
         .page-bg .container{ position:relative; z-index:1; }
 
         /* Products hero + falling stars */
-        .products-hero { background: linear-gradient(135deg, #0b5ed7 0%, #60a5fa 55%, #eaf6ff 100%); border-radius: 14px; padding: 1.5rem; box-shadow: 0 12px 40px rgba(11,94,215,0.08); margin-bottom: 1rem; color: #fff; overflow: hidden; }
+        .products-hero { background: linear-gradient(135deg, #0d6efd 0%, #2b8cff 40%, #7ec8ff 100%); border-radius: 14px; padding: 1.5rem; box-shadow: 0 18px 50px rgba(13,110,253,0.14); margin-bottom: 1rem; color: #fff; overflow: hidden; }
+            .products-hero { background: linear-gradient(135deg, #0d6efd 0%, #2b8cff 40%, #7ec8ff 100%); border-radius: 14px; padding: 1.5rem; box-shadow: 0 18px 50px rgba(13,110,253,0.14); margin-bottom: 1rem; color: #fff; overflow: hidden; }
         .products-hero .display-6, .products-hero .text-muted { color: rgba(255,255,255,0.95); }
         .products-hero .card{ background: rgba(255,255,255,0.95); }
         .products-hero > .products-stars { position: absolute; inset: 0 0 auto 0; pointer-events: none; z-index: 0; overflow: hidden; }
         .products-hero .hero-content { position: relative; z-index: 2; }
 
         /* stars */
-        .products-stars .star{ position: absolute; top: -10px; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.95); box-shadow: 0 0 10px rgba(255,255,255,0.9); opacity: 0.95; transform-origin: center; }
+        .products-stars .star{ position: absolute; top: -10px; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.98); box-shadow: 0 0 14px rgba(13,110,253,0.65); opacity: 0.98; transform-origin: center; mix-blend-mode: screen; }
         @keyframes fall { 0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(120vh) translateX(30px) rotate(270deg); opacity: 0; } }
 
         /* keep product cards clear and images visible */
