@@ -1,0 +1,118 @@
+/* ============ FIX FOR FORM CONTROLS IN DARK/LIGHT MODE ============ */
+
+/* Form controls (input, select, textarea) styling */
+body.day-mode .form-control,
+body.day-mode .form-select,
+body.day-mode textarea.form-control {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-color: #dee2e6 !important;
+}
+
+body.day-mode .form-control:focus,
+body.day-mode .form-select:focus,
+body.day-mode textarea.form-control:focus {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+}
+
+body.day-mode .form-control::placeholder {
+    color: #adb5bd !important;
+}
+
+body:not(.day-mode) .form-control,
+body:not(.day-mode) .form-select,
+body:not(.day-mode) textarea.form-control {
+    background-color: rgba(255,255,255,0.05) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+body:not(.day-mode) .form-control:focus,
+body:not(.day-mode) .form-select:focus,
+body:not(.day-mode) textarea.form-control:focus {
+    background-color: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    border-color: #64b5f6 !important;
+    box-shadow: 0 0 0 0.25rem rgba(100, 181, 246, 0.25) !important;
+}
+
+body:not(.day-mode) .form-control::placeholder {
+    color: rgba(255,255,255,0.6) !important;
+}
+
+/* Form check styling */
+body.day-mode .form-check-input {
+    background-color: #fff !important;
+    border-color: #dee2e6 !important;
+}
+
+body.day-mode .form-check-input:checked {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+}
+
+body:not(.day-mode) .form-check-input {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+body:not(.day-mode) .form-check-input:checked {
+    background-color: #64b5f6 !important;
+    border-color: #64b5f6 !important;
+}
+
+/* Form labels styling */
+body.day-mode .form-label {
+    color: #000 !important;
+}
+
+body:not(.day-mode) .form-label {
+    color: #fff !important;
+}
+
+/* Invalid form feedback */
+body.day-mode .invalid-feedback,
+body.day-mode .form-text {
+    color: #6c757d !important;
+}
+
+body.day-mode .is-invalid {
+    border-color: #dc3545 !important;
+}
+
+body.day-mode .is-invalid:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
+}
+
+body:not(.day-mode) .invalid-feedback,
+body:not(.day-mode) .form-text {
+    color: rgba(255,255,255,0.75) !important;
+}
+
+body:not(.day-mode) .is-invalid {
+    border-color: #f8949a !important;
+}
+
+body:not(.day-mode) .is-invalid:focus {
+    border-color: #f8949a !important;
+    box-shadow: 0 0 0 0.25rem rgba(248, 148, 154, 0.25) !important;
+}
+
+/* Input group styling */
+body.day-mode .input-group-text {
+    background-color: #e9ecef !important;
+    color: #000 !important;
+    border-color: #dee2e6 !important;
+}
+
+body:not(.day-mode) .input-group-text {
+    background-color: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* End form controls fixes */

@@ -11,6 +11,7 @@
     
     <!-- Custom CSS (Yang baru tadi) -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/form-fixes.css') }}" rel="stylesheet">
     
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
