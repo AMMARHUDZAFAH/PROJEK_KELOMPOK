@@ -19,21 +19,21 @@
             </div>
 
             <!-- SEARCH CARD (Glassmorphism) -->
-            <div class="card shadow-lg border-0" style="border-radius: 20px;">
+            <div class="card shadow-lg border-0 bg-transparent" style="border-radius: 20px;">
                 <div class="card-body p-4">
                     <form method="GET" class="row g-3 align-items-end">
                         <!-- Input Search -->
                         <div class="col-md-5 text-start">
                             <label class="form-label fw-bold small text-uppercase opacity-75">Cari Produk</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-white border-0"><i class="bi bi-search text-muted"></i></span>
-                                <input type="text" name="q" value="{{ request('q') }}" class="form-control border-0 bg-white shadow-none text-dark" placeholder="Contoh: iPhone 13...">
+                                <span class="input-group-text bg-transparent border-0"><i class="bi bi-search text-muted"></i></span>
+                                <input type="text" name="q" value="{{ request('q') }}" class="form-control border-0 bg-transparent shadow-none" placeholder="Contoh: iPhone 13...">
                             </div>
                         </div>
                         <!-- Input Kategori -->
                         <div class="col-md-4 text-start">
                             <label class="form-label fw-bold small text-uppercase opacity-75">Kategori</label>
-                            <select name="category" class="form-select border-0 bg-white shadow-none text-dark">
+                            <select name="category" class="form-select border-0 bg-transparent shadow-none">
                                 <option value="">Semua Kategori</option>
                                 @foreach($categories as $c)
                                     <option value="{{ $c->id }}" @if(request('category')==$c->id) selected @endif>{{ $c->name }}</option>
@@ -60,7 +60,7 @@
             <div class="card h-100 border-0 shadow-sm hover-top overflow-hidden">
                 
                 <!-- Gambar Produk -->
-                <div class="position-relative bg-white d-flex align-items-center justify-content-center" style="height: 220px;">
+                <div class="position-relative bg-secondary bg-opacity-10 d-flex align-items-center justify-content-center" style="height: 220px;">
                     @if($p->image)
                         <img src="{{ asset('storage/'.$p->image) }}" class="w-100 h-100" style="object-fit: cover;" alt="{{ $p->name }}">
                     @else

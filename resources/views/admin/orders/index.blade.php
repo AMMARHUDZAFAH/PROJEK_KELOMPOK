@@ -14,10 +14,10 @@
         </div>
     @endif
 
-    <div class="card">
+    <div class="card bg-transparent">
         <div class="table-responsive">
             <table class="table table-hover mb-0">
-                <thead class="table-light">
+                <thead class="bg-transparent">
                     <tr>
                         <th>No. Pesanan</th>
                         <th>Pembeli</th>

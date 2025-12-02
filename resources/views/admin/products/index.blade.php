@@ -12,7 +12,7 @@
     @endif
 
     <table class="table">
-        <thead>
+        <thead class="bg-transparent">
             <tr>
                 <th>Image</th>
                 <th>Name</th>

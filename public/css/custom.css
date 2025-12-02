@@ -149,7 +149,163 @@ body.day-mode .card {
 
 /* Form Input Fix */
 .form-control, .form-select {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
+    /* Default (dark) form look: subtle translucent dark background */
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+/* Day mode overrides for forms */
+body.day-mode .form-control, body.day-mode .form-select {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0,0,0,0.08);
     color: #333;
+}
+
+/* Ensure muted and helper text is readable in both modes */
+.text-muted {
+    color: rgba(255,255,255,0.72) !important;
+}
+body.day-mode .text-muted {
+    color: rgba(0,0,0,0.6) !important;
+}
+
+/* Navbar/link visibility */
+.navbar .nav-link, .navbar .navbar-brand, .nav-link {
+    color: rgba(255,255,255,0.95) !important;
+}
+body.day-mode .navbar .nav-link, body.day-mode .navbar .navbar-brand, body.day-mode .nav-link {
+    color: #333 !important;
+}
+
+/* Badges readable */
+.badge {
+    color: #fff !important;
+}
+body.day-mode .badge {
+    color: #000 !important;
+}
+
+/* Tables and small text inside cards */
+.card small, .card .small, .table td, .table th {
+    color: rgba(255,255,255,0.9) !important;
+}
+body.day-mode .card small, body.day-mode .card .small, body.day-mode .table td, body.day-mode .table th {
+    color: rgba(0,0,0,0.85) !important;
+}
+
+/* --- Dark mode fixes for elements that explicitly use white backgrounds --- */
+body:not(.day-mode) .bg-white,
+body:not(.day-mode) .bg-light,
+body:not(.day-mode) .card.bg-white,
+body:not(.day-mode) .card.bg-light {
+    /* Turn explicit white backgrounds into subtle dark surfaces */
+    background-color: rgba(255,255,255,0.04) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+    color: #fff !important;
+}
+
+/* If elements inside still force dark text, override to readable light in dark mode */
+body:not(.day-mode) .bg-white .text-dark,
+body:not(.day-mode) .bg-light .text-dark,
+body:not(.day-mode) .card.bg-white .text-dark,
+body:not(.day-mode) .card.bg-light .text-dark {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Ensure links and buttons on converted surfaces are readable */
+body:not(.day-mode) .bg-white a,
+body:not(.day-mode) .bg-light a,
+body:not(.day-mode) .card.bg-white a,
+body:not(.day-mode) .card.bg-light a,
+body:not(.day-mode) .bg-white .btn,
+body:not(.day-mode) .bg-light .btn {
+    color: #fff !important;
+}
+
+/* Buttons with light backgrounds should invert in dark mode */
+body:not(.day-mode) .btn.btn-light {
+    background-color: rgba(255,255,255,0.06) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* Finally, elements that explicitly set white text on light backgrounds will now be visible because the background is darkened */
+
+/* Broad dark-mode surface conversions for remaining components */
+body:not(.day-mode) .card,
+body:not(.day-mode) .card-body,
+body:not(.day-mode) .list-group-item,
+body:not(.day-mode) .alert,
+body:not(.day-mode) .dropdown-menu,
+body:not(.day-mode) .modal-content,
+body:not(.day-mode) .toast,
+body:not(.day-mode) .popover,
+body:not(.day-mode) .breadcrumb,
+body:not(.day-mode) .accordion-item,
+body:not(.day-mode) .accordion-body,
+body:not(.day-mode) .table,
+body:not(.day-mode) .table thead,
+body:not(.day-mode) .table tbody tr,
+body:not(.day-mode) .table-hover tbody tr:hover,
+body:not(.day-mode) .card .card-header,
+body:not(.day-mode) .card .card-footer {
+    background-color: rgba(255,255,255,0.03) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* Override explicit dark text inside these surfaces */
+body:not(.day-mode) .card .text-dark,
+body:not(.day-mode) .card-body .text-dark,
+body:not(.day-mode) .list-group-item .text-dark,
+body:not(.day-mode) .alert .text-dark,
+body:not(.day-mode) .modal-content .text-dark,
+body:not(.day-mode) .dropdown-menu .text-dark,
+body:not(.day-mode) .toast .text-dark {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Make form elements on these surfaces readable */
+body:not(.day-mode) .card .form-control,
+body:not(.day-mode) .modal-content .form-control,
+body:not(.day-mode) .dropdown-menu .form-control {
+    background-color: rgba(255,255,255,0.04) !important;
+    color: #fff !important;
+    border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* Ensure list-group links/buttons are visible */
+body:not(.day-mode) .list-group-item a,
+body:not(.day-mode) .list-group-item button {
+    color: #fff !important;
+}
+
+/* Breadcrumb separators and links */
+body:not(.day-mode) .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255,255,255,0.6) !important;
+}
+body:not(.day-mode) .breadcrumb a { color: #fff !important; }
+
+/* Accordion header/buttons */
+body:not(.day-mode) .accordion-button { color: #fff !important; }
+
+/* Tables: ensure readable rows and headers */
+body:not(.day-mode) .table thead th { color: rgba(255,255,255,0.95) !important; }
+body:not(.day-mode) .table tbody td { color: rgba(255,255,255,0.9) !important; }
+
+/* Safety: override any .text-white on light surfaces to remain white in dark mode */
+body:not(.day-mode) .bg-white .text-white, body:not(.day-mode) .bg-light .text-white { color: #fff !important; }
+
+/* End of broad dark-mode overrides */
+
+/* Make any element with .text-dark readable in dark mode */
+body:not(.day-mode) .text-dark {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+/* Ensure form labels are readable in dark mode */
+body:not(.day-mode) .form-label,
+body:not(.day-mode) label {
+    color: rgba(255,255,255,0.9) !important;
 }

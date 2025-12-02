@@ -29,7 +29,7 @@
                 <td>
                     {{ $u->name }}
                     @if($u->trashed())
-                        <span class="badge bg-warning text-dark ms-2">Trashed</span>
+                        <span class="badge bg-warning ms-2">Trashed</span>
                     @endif
                 </td>
                 <td>{{ $u->email }}</td>

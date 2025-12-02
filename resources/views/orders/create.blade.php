@@ -13,8 +13,8 @@
             </div>
 
             <!-- Order Details -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
+            <div class="card mb-4 bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">📋 Detail Pesanan</h5>
                 </div>
                 <div class="card-body">
@@ -45,8 +45,8 @@
             </div>
 
             <!-- Items -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
+            <div class="card mb-4 bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">📦 Daftar Produk</h5>
                 </div>
                 <div class="table-responsive">

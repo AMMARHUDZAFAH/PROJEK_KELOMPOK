@@ -29,12 +29,12 @@
             
             <div class="form-floating mb-3">
                 <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                <label for="emailInput" class="text-dark">Email address</label>
+                <label for="emailInput">Email address</label>
             </div>
 
             <div class="form-floating mb-4">
                 <input type="password" name="password" class="form-control" id="passInput" placeholder="Password" required>
-                <label for="passInput" class="text-dark">Password</label>
+                <label for="passInput">Password</label>
             </div>
 
             <button class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow-sm mb-3">

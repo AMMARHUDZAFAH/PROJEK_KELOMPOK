@@ -23,7 +23,7 @@
             <strong>No categories found.</strong> Please <a href="{{ route('admin.categories.create') }}" class="alert-link">create a category</a> first before adding a product.
         </div>
     @else
-        <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data" class="card p-4">
+        <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data" class="card bg-transparent p-4">
             @csrf
 
             <div class="mb-3">

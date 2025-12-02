@@ -20,7 +20,7 @@
             </div>
         @endif
 
-        <div class="card">
+        <div class="card bg-transparent">
             <div class="card-body">
                 <form action="{{ route('admin.categories.update', $category) }}" method="POST">
                     @csrf

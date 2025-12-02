@@ -19,8 +19,8 @@
             <div class="row">
                 <!-- User Info Card -->
                 <div class="col-md-8 mb-4">
-                    <div class="card">
-                        <div class="card-header bg-light">
+                    <div class="card bg-transparent">
+                        <div class="card-header bg-transparent">
                             <h5 class="mb-0">📋 Informasi Akun</h5>
                         </div>
                         <div class="card-body">
@@ -69,14 +69,14 @@
             </div>
 
             <!-- Recent Orders -->
-            <div class="card">
-                <div class="card-header bg-light">
+            <div class="card bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">📦 Pesanan Terbaru</h5>
                 </div>
                 @if(Auth::user()->orders->count() > 0)
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
-                            <thead class="table-light">
+                            <thead class="bg-transparent">
                                 <tr>
                                     <th>No. Pesanan</th>
                                     <th>Tanggal</th>

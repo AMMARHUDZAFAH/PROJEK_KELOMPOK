@@ -17,8 +17,8 @@
     <div class="row">
         <div class="col-lg-8">
             <!-- Order Info -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
+            <div class="card mb-4 bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">Informasi Pesanan</h5>
                 </div>
                 <div class="card-body">
@@ -38,8 +38,8 @@
             </div>
 
             <!-- Customer Info -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
+            <div class="card mb-4 bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">👤 Informasi Pembeli</h5>
                 </div>
                 <div class="card-body">
@@ -57,13 +57,13 @@
             </div>
 
             <!-- Order Items -->
-            <div class="card mb-4">
-                <div class="card-header bg-light">
+            <div class="card mb-4 bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">📦 Item Pesanan</h5>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead class="table-light">
+                        <thead class="bg-transparent">
                             <tr>
                                 <th>Produk</th>
                                 <th>Harga</th>
@@ -97,8 +97,8 @@
             </div>
 
             <!-- Status Update Form -->
-            <div class="card">
-                <div class="card-header bg-light">
+            <div class="card bg-transparent">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">🔄 Perbarui Status</h5>
                 </div>
                 <div class="card-body">
@@ -124,8 +124,8 @@
 
         <!-- Order Summary Sidebar -->
         <div class="col-lg-4">
-            <div class="card sticky-top" style="top: 20px;">
-                <div class="card-header bg-light">
+            <div class="card sticky-top bg-transparent" style="top: 20px;">
+                <div class="card-header bg-transparent">
                     <h5 class="mb-0">💰 Ringkasan Pesanan</h5>
                 </div>
                 <div class="card-body">
@@ -149,7 +149,7 @@
 
                     <hr class="my-3">
 
-                    <div class="bg-light p-3 rounded">
+                    <div class="bg-transparent p-3 rounded border border-white border-opacity-10">
                         <p class="text-muted mb-1"><small>Status Pembayaran</small></p>
                         @if($order->status === 'pending')
                             <div class="alert alert-warning mb-0 py-2">

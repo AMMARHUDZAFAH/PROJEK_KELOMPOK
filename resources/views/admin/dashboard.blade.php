@@ -27,7 +27,7 @@
                 <a href="{{ route('admin.products.index') }}" class="btn btn-info text-white px-4 rounded-pill shadow-sm">
                     <i class="bi bi-box-seam-fill me-1"></i> Produk
                 </a>
-                <a href="{{ route('admin.orders.index') }}" class="btn btn-warning text-dark px-4 rounded-pill shadow-sm">
+                <a href="{{ route('admin.orders.index') }}" class="btn btn-warning px-4 rounded-pill shadow-sm">
                     <i class="bi bi-cart-check-fill me-1"></i> Pesanan
                 </a>
             </div>

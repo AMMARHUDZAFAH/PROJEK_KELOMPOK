@@ -27,25 +27,25 @@
 
             <div class="form-floating mb-3">
                 <input type="text" name="name" class="form-control" id="nameInput" placeholder="Nama Lengkap" required>
-                <label for="nameInput" class="text-dark">Nama Lengkap</label>
+                <label for="nameInput">Nama Lengkap</label>
             </div>
 
             <div class="form-floating mb-3">
                 <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                <label for="emailInput" class="text-dark">Alamat Email</label>
+                <label for="emailInput">Alamat Email</label>
             </div>
 
             <div class="row g-2 mb-4">
                 <div class="col-6">
                     <div class="form-floating">
                         <input type="password" name="password" class="form-control" id="passInput" placeholder="Password" required>
-                        <label for="passInput" class="text-dark">Password</label>
+                        <label for="passInput">Password</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-floating">
                         <input type="password" name="password_confirmation" class="form-control" id="confPassInput" placeholder="Confirm" required>
-                        <label for="confPassInput" class="text-dark">Confirm</label>
+                        <label for="confPassInput">Confirm</label>
                     </div>
                 </div>
             </div>
