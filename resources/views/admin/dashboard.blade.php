@@ -1,319 +1,203 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+<div class="container py-4">
 
-        <style>
-            /* Dashboard UI animations (non-functional, purely visual) */
-            .anim-fade {
-                opacity: 0;
-                transform: translateY(8px);
-                transition: opacity .5s ease, transform .5s ease;
-            }
-            .anim-fade.visible {
-                opacity: 1;
-                transform: none;
-            }
-            .anim-card {
-                will-change: transform, box-shadow;
-                transition: transform .18s ease, box-shadow .18s ease;
-            }
-            .anim-card:hover {
-                transform: translateY(-6px) scale(1.01);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            }
-            .btn-animate {
-                transition: transform .12s ease, box-shadow .12s ease;
-            }
-            .btn-animate:active { transform: scale(.98); }
-            .count { font-variant-numeric: tabular-nums; }
-            .progress .progress-bar { transition: width 1s ease; }
-            .status-badge { transition: transform .18s ease; }
-            .status-badge:hover { transform: scale(1.06); }
-            /* Blue background hero for dashboard */
-            .dashboard-hero{
-                position: relative;
-                overflow: hidden;
-                background: linear-gradient(135deg,#0b5ed7 0%, #3da5ff 55%, #e6f4ff 100%);
-                color: #fff;
-                border-radius: 12px;
-                padding: 1.25rem;
-                box-shadow: 0 8px 32px rgba(13,110,253,0.12);
-            }
-            .dashboard-hero:before{
-                content: '';
-                position: absolute;
-                right: -120px;
-                top: -60px;
-                width: 360px;
-                height: 360px;
-                background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0) 40%);
-                transform: rotate(15deg);
-                pointer-events: none;
-            }
-            .dashboard-hero .card{ background: rgba(255,255,255,0.95); }
-            .dashboard-hero h2{ color: #fff; }
-            .dashboard-hero .text-muted{ color: rgba(0,0,0,0.55); }
-            .dashboard-hero .btn{ box-shadow: 0 6px 18px rgba(13,110,253,0.12); }
-            .dashboard-hero .badge{ box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-        </style>
-
-        <h2 class="mb-4 anim-fade">📊 Admin Dashboard</h2>
-        <div class="dashboard-hero mb-4">
-
-        <!-- Quick Action Buttons -->
-        <div class="mb-4 d-flex gap-2 flex-wrap">
-            <a href="{{ route('admin.users.index') }}" class="btn btn-primary">
-                👤 Kelola Pengguna
-            </a>
-            <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">
-                🗂️ Kelola Kategori
-            </a>
-            <a href="{{ route('admin.products.index') }}" class="btn btn-info text-white">
-                📦 Kelola Produk
-            </a>
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-warning">
-                📋 Kelola Pesanan
-            </a>
+    <!-- HEADER DASHBOARD -->
+    <div class="d-flex justify-content-between align-items-center mb-4 product-card-anim">
+        <div>
+            <h2 class="fw-bold mb-0 text-white">📊 Admin Dashboard</h2>
+            <p class="mb-0 text-white-50">Ringkasan aktivitas toko kamu hari ini</p>
         </div>
-
-        <!-- Sales Stats -->
-        <div class="row mb-4">
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm border-primary anim-card anim-fade">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary">💰 Total Penjualan</h5>
-                        <h3 class="mb-0"><span class="count" data-prefix="Rp " data-target="{{ $totalRevenue }}">Rp {{ number_format($totalRevenue, 0) }}</span></h3>
-                        <small class="text-muted">Dari pesanan selesai</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm border-success anim-card anim-fade">
-                    <div class="card-body">
-                        <h5 class="card-title text-success">✅ Pesanan Selesai</h5>
-                        <h3 class="mb-0"><span class="count" data-target="{{ $completedOrders }}">{{ $completedOrders }}</span></h3>
-                        <small class="text-muted">Pesanan yang sudah dikirim</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm border-warning anim-card anim-fade">
-                    <div class="card-body">
-                        <h5 class="card-title text-warning">⏳ Pesanan Pending</h5>
-                        <h3 class="mb-0"><span class="count" data-target="{{ $pendingOrders }}">{{ $pendingOrders }}</span></h3>
-                        <small class="text-muted">Menunggu pembayaran</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm border-info anim-card anim-fade">
-                    <div class="card-body">
-                        <h5 class="card-title text-info">📦 Total Produk</h5>
-                        <h3 class="mb-0"><span class="count" data-target="{{ $productCount }}">{{ $productCount }}</span></h3>
-                        <small class="text-muted">Produk di katalog</small>
-                    </div>
-                </div>
-            </div>
+        <div class="badge bg-white bg-opacity-10 border border-light text-white p-2 px-3 rounded-pill shadow-sm backdrop-blur">
+            📅 {{ now()->format('d M Y') }}
         </div>
-
-        <!-- General Stats -->
-        <div class="row mb-4">
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm anim-card anim-fade">
-                    <div class="card-body">
-                        <h4><span class="count" data-target="{{ $userCount }}">{{ $userCount }}</span></h4>
-                        <p class="mb-0">👤 Pengguna</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm anim-card anim-fade">
-                    <div class="card-body">
-                        <h4><span class="count" data-target="{{ $categoryCount }}">{{ $categoryCount }}</span></h4>
-                        <p class="mb-0">🗂️ Kategori</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm anim-card anim-fade">
-                    <div class="card-body">
-                        <h4><span class="count" data-target="{{ $orderCount }}">{{ $orderCount }}</span></h4>
-                        <p class="mb-0">📋 Total Pesanan</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <div class="card text-center shadow-sm anim-card anim-fade">
-                    <div class="card-body">
-                        <h4><span class="count" data-target="{{ $totalUsers }}">{{ $totalUsers }}</span></h4>
-                        <p class="mb-0">👥 Pelanggan Aktif</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recent Activity -->
-        <div class="row mt-4">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0">📋 Pesanan Terbaru</h5>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>No. Pesanan</th>
-                                    <th>Pembeli</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                    <th>Tanggal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($latestOrders as $order)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('admin.orders.show', $order) }}" class="text-decoration-none">
-                                                <strong>#{{ $order->id }}</strong>
-                                            </a>
-                                        </td>
-                                        <td>{{ $order->user->name }}</td>
-                                        <td>Rp {{ number_format($order->total_price, 0) }}</td>
-                                        <td>
-                                            <span class="badge bg-{{ $order->status_badge }}">{{ $order->status_label }}</span>
-                                        </td>
-                                        <td><small class="text-muted">{{ $order->created_at->format('d/m/Y H:i') }}</small></td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center py-3 text-muted">Belum ada pesanan</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary">Lihat Semua Pesanan →</a>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 mt-4">
-                <div class="card mb-4">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0">📦 Produk Terbaru</h5>
-                    </div>
-                    <div class="list-group list-group-flush">
-                        @forelse($latestProducts as $product)
-                            <a href="{{ route('admin.products.show', $product) }}" class="list-group-item list-group-item-action">
-                                <div class="d-flex w-100 justify-content-between align-items-start">
-                                    <div>
-                                        <strong>{{ $product->name }}</strong>
-                                        <br>
-                                        <small class="text-muted">Rp {{ number_format($product->price, 0) }}</small>
-                                    </div>
-                                    <span class="badge bg-info">{{ $product->stock }} stok</span>
-                                </div>
-                            </a>
-                        @empty
-                            <div class="list-group-item text-center py-3 text-muted">Belum ada produk</div>
-                        @endforelse
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-sm btn-secondary">Lihat Semua Produk →</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0">📊 Status Pesanan</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Selesai</span>
-                                <strong>{{ $completedOrders }}</strong>
-                            </div>
-                            <div class="progress" style="height: 6px;">
-                                <div class="progress-bar bg-success" style="width: {{ $orderCount > 0 ? ($completedOrders/$orderCount*100) : 0 }}%"></div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Diproses</span>
-                                <strong>{{ $processingOrders }}</strong>
-                            </div>
-                            <div class="progress" style="height: 6px;">
-                                <div class="progress-bar bg-info" style="width: {{ $orderCount > 0 ? ($processingOrders/$orderCount*100) : 0 }}%"></div>
-                            </div>
-                        </div>
-                        <div class="mb-0">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Pending</span>
-                                <strong>{{ $pendingOrders }}</strong>
-                            </div>
-                            <div class="progress" style="height: 6px;">
-                                <div class="progress-bar bg-warning" style="width: {{ $orderCount > 0 ? ($pendingOrders/$orderCount*100) : 0 }}%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            (function(){
-                function formatNumber(n){
-                    try{ return new Intl.NumberFormat('id-ID').format(Math.round(n)); }catch(e){ return n; }
-                }
-
-                document.addEventListener('DOMContentLoaded', function(){
-                    // reveal elements with stagger
-                    document.querySelectorAll('.anim-fade').forEach(function(el, i){
-                        setTimeout(function(){ el.classList.add('visible'); }, 80 * i);
-                    });
-
-                    // animate counters
-                    document.querySelectorAll('.count').forEach(function(el){
-                        var target = parseFloat(el.getAttribute('data-target')) || 0;
-                        var prefix = el.getAttribute('data-prefix') || '';
-                        var duration = 900;
-                        var start = 0;
-                        var startTime = null;
-
-                        function step(timestamp){
-                            if (!startTime) startTime = timestamp;
-                            var progress = Math.min((timestamp - startTime) / duration, 1);
-                            var value = Math.floor(progress * (target - start) + start);
-                            el.textContent = prefix + formatNumber(value);
-                            if (progress < 1) {
-                                window.requestAnimationFrame(step);
-                            } else {
-                                // ensure final exact value
-                                el.textContent = prefix + formatNumber(target);
-                            }
-                        }
-
-                        // start only if target > 0
-                        if (target > 0) window.requestAnimationFrame(step);
-                    });
-
-                    // animate progress bars from 0 to their width
-                    document.querySelectorAll('.progress .progress-bar').forEach(function(bar){
-                        var to = bar.style.width || '0%';
-                        bar.style.width = '0%';
-                        setTimeout(function(){ bar.style.width = to; }, 60);
-                    });
-                });
-            })();
-        </script>
     </div>
+
+    <!-- 1. QUICK ACTION BUTTONS -->
+    <div class="row mb-4 product-card-anim">
+        <div class="col-12">
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="{{ route('admin.users.index') }}" class="btn btn-primary px-4 rounded-pill shadow-sm">
+                    <i class="bi bi-people-fill me-1"></i> Kelola User
+                </a>
+                <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary px-4 rounded-pill shadow-sm">
+                    <i class="bi bi-tags-fill me-1"></i> Kategori
+                </a>
+                <a href="{{ route('admin.products.index') }}" class="btn btn-info text-white px-4 rounded-pill shadow-sm">
+                    <i class="bi bi-box-seam-fill me-1"></i> Produk
+                </a>
+                <a href="{{ route('admin.orders.index') }}" class="btn btn-warning text-dark px-4 rounded-pill shadow-sm">
+                    <i class="bi bi-cart-check-fill me-1"></i> Pesanan
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. STATISTIK CARDS (Glass Effect) -->
+    <div class="row mb-4">
+        <!-- Card 1 -->
+        <div class="col-md-3 mb-3 product-card-anim" style="animation-delay: 0.1s">
+            <div class="card h-100 shadow-sm border-0 bg-transparent-glass">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="icon-box bg-success bg-opacity-25 text-success rounded-circle me-3">
+                            <i class="bi bi-cash-stack fs-4"></i>
+                        </div>
+                        <h6 class="mb-0 fw-bold opacity-75 text-white">Total Omset</h6>
+                    </div>
+                    <h3 class="fw-bold mb-0 text-white">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-3 mb-3 product-card-anim" style="animation-delay: 0.2s">
+            <div class="card h-100 shadow-sm border-0 bg-transparent-glass">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="icon-box bg-primary bg-opacity-25 text-primary rounded-circle me-3">
+                            <i class="bi bi-bag-check-fill fs-4"></i>
+                        </div>
+                        <h6 class="mb-0 fw-bold opacity-75 text-white">Pesanan Selesai</h6>
+                    </div>
+                    <h3 class="fw-bold mb-0 text-white">{{ $completedOrders }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-3 mb-3 product-card-anim" style="animation-delay: 0.3s">
+            <div class="card h-100 shadow-sm border-0 bg-transparent-glass">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="icon-box bg-warning bg-opacity-25 text-warning rounded-circle me-3">
+                            <i class="bi bi-hourglass-split fs-4"></i>
+                        </div>
+                        <h6 class="mb-0 fw-bold opacity-75 text-white">Perlu Diproses</h6>
+                    </div>
+                    <h3 class="fw-bold mb-0 text-white">{{ $pendingOrders }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-3 mb-3 product-card-anim" style="animation-delay: 0.4s">
+            <div class="card h-100 shadow-sm border-0 bg-transparent-glass">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="icon-box bg-info bg-opacity-25 text-info rounded-circle me-3">
+                            <i class="bi bi-box-fill fs-4"></i>
+                        </div>
+                        <h6 class="mb-0 fw-bold opacity-75 text-white">Total Produk</h6>
+                    </div>
+                    <h3 class="fw-bold mb-0 text-white">{{ $productCount }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. TABEL PESANAN TERBARU -->
+    <div class="row">
+        <div class="col-lg-8 mb-4 product-card-anim" style="animation-delay: 0.5s">
+            <div class="card shadow-sm border-0 h-100 bg-transparent-glass">
+                <div class="card-header bg-transparent border-bottom border-white border-opacity-10 py-3">
+                    <h5 class="mb-0 fw-bold text-white"><i class="bi bi-receipt me-2 text-primary"></i>Pesanan Terbaru</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 text-white">
+                        <thead class="bg-transparent border-bottom border-white border-opacity-10">
+                            <tr>
+                                <th class="ps-4 opacity-75 text-white">ID</th>
+                                <th class="opacity-75 text-white">Pembeli</th>
+                                <th class="opacity-75 text-white">Total</th>
+                                <th class="opacity-75 text-white">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($latestOrders as $order)
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td class="ps-4 fw-bold text-primary">#{{ $order->id }}</td>
+                                    <td>
+                                        <span class="fw-bold d-block text-white">{{ $order->user->name }}</span>
+                                        <small class="opacity-50 text-white-50">{{ $order->user->email }}</small>
+                                    </td>
+                                    <td class="fw-bold text-white">Rp {{ number_format($order->total_price, 0) }}</td>
+                                    <td>
+                                        <span class="badge rounded-pill bg-{{ $order->status_badge }} bg-opacity-75">
+                                            {{ $order->status_label }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 opacity-50 text-white">Belum ada pesanan.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIST PRODUK -->
+        <div class="col-lg-4 mb-4 product-card-anim" style="animation-delay: 0.6s">
+            <div class="card shadow-sm border-0 h-100 bg-transparent-glass">
+                <div class="card-header bg-transparent border-bottom border-white border-opacity-10 py-3">
+                    <h5 class="mb-0 fw-bold text-white"><i class="bi bi-stars me-2 text-warning"></i>Produk Baru</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    @forelse($latestProducts as $product)
+                        <div class="list-group-item bg-transparent border-bottom border-white border-opacity-10 py-3 d-flex align-items-center gap-3">
+                            @if($product->image)
+                                <img src="{{ asset('storage/'.$product->image) }}" class="rounded" style="width: 45px; height: 45px; object-fit: cover;">
+                            @else
+                                <div class="bg-secondary bg-opacity-25 rounded d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                    <i class="bi bi-image opacity-50 text-white"></i>
+                                </div>
+                            @endif
+                            <div>
+                                <h6 class="mb-0 fw-bold text-white">{{ Str::limit($product->name, 20) }}</h6>
+                                <small class="text-primary fw-bold">Rp {{ number_format($product->price, 0) }}</small>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="p-4 text-center opacity-50 text-white">Kosong</div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* CSS MANUAL GLASS */
+    .bg-transparent-glass {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    body.day-mode .bg-transparent-glass {
+        background: rgba(255, 255, 255, 0.85) !important;
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* Pastikan text putih di mode malam */
+    .text-white { color: #fff !important; }
+    .text-white-50 { color: rgba(255, 255, 255, 0.5) !important; }
+
+    /* Override mode siang */
+    body.day-mode .text-white { color: #333 !important; }
+    body.day-mode .text-white-50 { color: #666 !important; }
+
+    .icon-box {
+        width: 45px; height: 45px;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .backdrop-blur { backdrop-filter: blur(5px); }
+    
+    /* Tabel transparan */
+    .table { --bs-table-bg: transparent; color: inherit; }
+</style>
 @endsection
