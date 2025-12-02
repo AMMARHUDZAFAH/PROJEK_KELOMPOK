@@ -621,3 +621,205 @@ body:not(.day-mode) .bg-info.text-white {
 }
 
 /* End bg-white opacity fixes */
+
+/* ============ FIX FOR COLORED BADGES AND OPACITY BORDERS ============ */
+
+/* Badge styling should be readable in both modes */
+body.day-mode .badge.bg-success {
+    background-color: #198754 !important;
+    color: #fff !important;
+}
+
+body.day-mode .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+body.day-mode .badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+body.day-mode .badge.bg-info {
+    background-color: #0dcaf0 !important;
+    color: #000 !important;
+}
+
+body:not(.day-mode) .badge.bg-success {
+    background-color: #198754 !important;
+    color: #fff !important;
+}
+
+body:not(.day-mode) .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+body:not(.day-mode) .badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+body:not(.day-mode) .badge.bg-info {
+    background-color: #0dcaf0 !important;
+    color: #000 !important;
+}
+
+/* Icon box styling with opacity backgrounds */
+body.day-mode .icon-box.bg-success {
+    background-color: rgba(25, 135, 84, 0.15) !important;
+}
+
+body.day-mode .icon-box.bg-primary {
+    background-color: rgba(13, 110, 253, 0.15) !important;
+}
+
+body.day-mode .icon-box.bg-warning {
+    background-color: rgba(255, 193, 7, 0.15) !important;
+}
+
+body.day-mode .icon-box.bg-info {
+    background-color: rgba(13, 202, 240, 0.15) !important;
+}
+
+body:not(.day-mode) .icon-box.bg-success {
+    background-color: rgba(25, 135, 84, 0.15) !important;
+}
+
+body:not(.day-mode) .icon-box.bg-primary {
+    background-color: rgba(13, 110, 253, 0.15) !important;
+}
+
+body:not(.day-mode) .icon-box.bg-warning {
+    background-color: rgba(255, 193, 7, 0.15) !important;
+}
+
+body:not(.day-mode) .icon-box.bg-info {
+    background-color: rgba(13, 202, 240, 0.15) !important;
+}
+
+/* Ensure icon box text colors are maintained */
+body.day-mode .icon-box.text-success {
+    color: #198754 !important;
+}
+
+body.day-mode .icon-box.text-primary {
+    color: #0d6efd !important;
+}
+
+body.day-mode .icon-box.text-warning {
+    color: #ffc107 !important;
+}
+
+body.day-mode .icon-box.text-info {
+    color: #0dcaf0 !important;
+}
+
+/* Border opacity styling */
+body.day-mode .border-white {
+    border-color: rgba(0,0,0,0.1) !important;
+}
+
+body.day-mode .border-white.border-opacity-10 {
+    border-color: rgba(0,0,0,0.05) !important;
+}
+
+body:not(.day-mode) .border-white {
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+body:not(.day-mode) .border-white.border-opacity-10 {
+    border-color: rgba(255,255,255,0.05) !important;
+}
+
+/* End colored elements fixes */
+
+/* ============ FIX FOR NAVBAR AND TOGGLE BUTTON ============ */
+
+/* Navbar should adapt to day/night mode */
+body.day-mode .navbar.navbar-dark {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+body.day-mode .navbar.navbar-dark .navbar-brand,
+body.day-mode .navbar.navbar-dark .nav-link {
+    color: #000 !important;
+}
+
+body.day-mode .navbar.navbar-dark .nav-link:hover {
+    color: #0d6efd !important;
+}
+
+body.day-mode .navbar.navbar-dark .navbar-toggler {
+    background-color: rgba(0,0,0,0.1);
+}
+
+body.day-mode .navbar.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Dark mode navbar should remain dark */
+body:not(.day-mode) .navbar.navbar-dark {
+    background-color: #212529 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+body:not(.day-mode) .navbar.navbar-dark .navbar-brand,
+body:not(.day-mode) .navbar.navbar-dark .nav-link {
+    color: #fff !important;
+}
+
+body:not(.day-mode) .navbar.navbar-dark .nav-link:hover {
+    color: #64b5f6 !important;
+}
+
+/* Toggle button should have proper contrast */
+body.day-mode #modeToggle {
+    color: #000 !important;
+}
+
+body:not(.day-mode) #modeToggle {
+    color: #fff !important;
+}
+
+/* Dropdown menu styling in both modes */
+body.day-mode .dropdown-menu {
+    background-color: #f8f9fa !important;
+    border-color: rgba(0,0,0,0.1) !important;
+}
+
+body.day-mode .dropdown-menu .dropdown-item {
+    color: #000 !important;
+}
+
+body.day-mode .dropdown-menu .dropdown-item:hover,
+body.day-mode .dropdown-menu .dropdown-item:focus {
+    background-color: rgba(0,0,0,0.05) !important;
+    color: #0d6efd !important;
+}
+
+body.day-mode .dropdown-divider {
+    border-color: rgba(0,0,0,0.1) !important;
+}
+
+body:not(.day-mode) .dropdown-menu {
+    background-color: #2b2d31 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+body:not(.day-mode) .dropdown-menu .dropdown-item {
+    color: #fff !important;
+}
+
+body:not(.day-mode) .dropdown-menu .dropdown-item:hover,
+body:not(.day-mode) .dropdown-menu .dropdown-item:focus {
+    background-color: rgba(255,255,255,0.08) !important;
+    color: #64b5f6 !important;
+}
+
+body:not(.day-mode) .dropdown-divider {
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* End navbar and toggle button fixes */
