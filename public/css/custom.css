@@ -492,3 +492,132 @@ body:not(.day-mode) .badge a {
 }
 
 /* End dark mode text fixes */
+
+/* ============ FIX FOR FORCED TEXT-WHITE AND TEXT-WHITE-50 ============ */
+/* These classes were hardcoded in HTML to stay white in light mode,
+   but they make text invisible on dark backgrounds, so we force readable colors in day mode only */
+
+body.day-mode .text-white {
+    color: #000 !important;
+}
+
+body.day-mode .text-white-50 {
+    color: rgba(0,0,0,0.5) !important;
+}
+
+body.day-mode .text-black {
+    color: #000 !important;
+}
+
+body.day-mode .text-black-50 {
+    color: rgba(0,0,0,0.5) !important;
+}
+
+/* In dark mode, keep .text-white visible but more subtle */
+body:not(.day-mode) .text-white {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+body:not(.day-mode) .text-white-50 {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+/* Fix for opacity-75 text-white combinations */
+body.day-mode .opacity-75.text-white {
+    color: #000 !important;
+    opacity: 0.75 !important;
+}
+
+body:not(.day-mode) .opacity-75.text-white {
+    color: rgba(255,255,255,0.95) !important;
+    opacity: 0.75 !important;
+}
+
+/* Fix for opacity-50 combinations */
+body.day-mode .opacity-50.text-white {
+    color: #000 !important;
+    opacity: 0.5 !important;
+}
+
+body:not(.day-mode) .opacity-50.text-white {
+    color: rgba(255,255,255,0.95) !important;
+    opacity: 0.5 !important;
+}
+
+body.day-mode .opacity-50.text-white-50 {
+    color: rgba(0,0,0,0.5) !important;
+    opacity: 0.5 !important;
+}
+
+body:not(.day-mode) .opacity-50.text-white-50 {
+    color: rgba(255,255,255,0.7) !important;
+    opacity: 0.5 !important;
+}
+
+/* Fix headings with text-white in day mode */
+body.day-mode h1.text-white,
+body.day-mode h2.text-white,
+body.day-mode h3.text-white,
+body.day-mode h4.text-white,
+body.day-mode h5.text-white,
+body.day-mode h6.text-white {
+    color: #000 !important;
+}
+
+/* Fix badges with text-white in day mode */
+body.day-mode .badge.text-white {
+    color: #fff !important;
+}
+
+/* Fix buttons with text-white in day mode */
+body.day-mode .btn.text-white {
+    color: #fff !important;
+}
+
+/* Fix table cells with text-white */
+body.day-mode table .text-white,
+body.day-mode th.text-white,
+body.day-mode td.text-white {
+    color: #000 !important;
+}
+
+/* End forced text-white fixes */
+
+/* ============ FIX FOR BG-WHITE WITH OPACITY IN DAY/NIGHT MODE ============ */
+/* Badges and other elements with bg-white bg-opacity-10 should adapt to theme */
+
+body.day-mode .bg-white.bg-opacity-10 {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+body:not(.day-mode) .bg-white.bg-opacity-10 {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+/* Fix for badge styling with border-light */
+body.day-mode .border-light {
+    border-color: rgba(0,0,0,0.2) !important;
+}
+
+body:not(.day-mode) .border-light {
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+/* Fix info colored backgrounds for headers in day mode */
+body.day-mode .bg-info {
+    background-color: #0d6efd !important;
+}
+
+body.day-mode .bg-info.text-white {
+    color: #fff !important;
+}
+
+body:not(.day-mode) .bg-info {
+    background-color: #0d6efd !important;
+}
+
+body:not(.day-mode) .bg-info.text-white {
+    color: #fff !important;
+}
+
+/* End bg-white opacity fixes */
