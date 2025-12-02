@@ -28,11 +28,12 @@
     <!-- 2. NAVBAR -->
     @include('layouts.navbar')
 
-    <!-- 3. TOMBOL TOGGLE GLOBAL (Melayang) -->
-    <div class="position-fixed end-0 me-3 d-flex align-items-center" style="z-index:9999; top: 85px;">
-        <button id="modeToggle" 
-            class="btn btn-light shadow-sm rounded-circle p-0 d-flex align-items-center justify-content-center border"
-            style="width:45px; height:45px; font-size:20px;">
+    <!-- 3. TOMBOL TOGGLE DRAGGABLE (Bisa Digeser) -->
+    <!-- ID 'modeToggleWrapper' penting buat JS draggable -->
+    <div id="modeToggleWrapper" class="position-fixed d-flex align-items-center justify-content-center shadow-lg rounded-circle" 
+         style="z-index: 9999; bottom: 30px; right: 30px; width: 60px; height: 60px; cursor: move; background: var(--bs-body-bg); border: 2px solid var(--bs-border-color);">
+        
+        <button id="modeToggle" class="btn btn-link text-decoration-none p-0 w-100 h-100 d-flex align-items-center justify-content-center fs-3">
             <span id="toggleIcon">🌙</span>
         </button>
     </div>

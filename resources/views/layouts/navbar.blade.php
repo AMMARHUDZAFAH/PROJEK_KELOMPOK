@@ -46,12 +46,6 @@
                             </a>
                         </li>
 
-                        <!-- Tombol Toggle Dark Mode -->
-                        <li class="nav-item ms-2">
-                            <button class="btn btn-outline-light rounded-circle" id="themeToggle" style="width: 40px; height: 40px;">
-                                <i class="bi bi-moon-fill" id="themeIcon"></i>
-                            </button>
-                        </li>
                     @endif
 
                     {{-- User Dropdown Menu --}}
