@@ -98,13 +98,17 @@
         color: #212529 !important;
     }
 
-    /* Fix <td> text color in dark mode */
-    body:not(.day-mode) .table.text-white td.text-dark {
+    /* Fix <td> text color in dark mode - very specific selectors */
+    body:not(.day-mode) .table.text-white tbody td.text-dark,
+    body:not(.day-mode) .table.text-white tr td.text-dark {
         color: rgba(255,255,255,0.95) !important;
+        background-color: transparent !important;
     }
 
-    body.day-mode .table.text-white td.text-dark {
+    body.day-mode .table.text-white tbody td.text-dark,
+    body.day-mode .table.text-white tr td.text-dark {
         color: #000000 !important;
+        background-color: transparent !important;
     }
 </style>
 @endpush
