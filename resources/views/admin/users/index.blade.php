@@ -14,8 +14,8 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    <table class="table table-bordered mt-3">
-        <thead>
+    <table class="table table-bordered mt-3 text-white bg-transparent">
+        <thead class="bg-transparent">
             <tr>
                 <th>Nama</th>
                 <th>Email</th>
@@ -59,3 +59,24 @@
     {{ $users->links() }}
 </div>
 @endsection
+
+@push('styles')
+<style>
+    /* Ensure table text is readable in both modes for this admin users table */
+    body:not(.day-mode) .table.text-white td,
+    body:not(.day-mode) .table.text-white th {
+        color: rgba(255,255,255,0.95) !important;
+    }
+
+    body.day-mode .table.text-white td,
+    body.day-mode .table.text-white th {
+        color: #212529 !important;
+    }
+
+    /* Make trashed rows remain readable */
+    body:not(.day-mode) .table.table-secondary td {
+        background-color: rgba(255,255,255,0.03) !important;
+        color: rgba(255,255,255,0.9) !important;
+    }
+</style>
+@endpush
