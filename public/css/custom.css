@@ -505,6 +505,7 @@ body.day-mode .text-white-50 {
     color: rgba(0,0,0,0.5) !important;
 }
 
+/* DAY MODE: Custom system (.day-mode class on body) */
 body.day-mode .text-black {
     color: #000 !important;
 }
@@ -513,13 +514,39 @@ body.day-mode .text-black-50 {
     color: rgba(0,0,0,0.5) !important;
 }
 
-/* In dark mode, keep .text-white visible but more subtle */
+/* NIGHT MODE: Custom system (body:not(.day-mode)) */
 body:not(.day-mode) .text-white {
     color: rgba(255,255,255,0.95) !important;
 }
 
 body:not(.day-mode) .text-white-50 {
     color: rgba(255,255,255,0.7) !important;
+}
+
+/* BOOTSTRAP LIGHT MODE (data-bs-theme="light" on html) */
+html[data-bs-theme="light"] .text-black {
+    color: #000 !important;
+}
+
+html[data-bs-theme="light"] .text-black-50 {
+    color: rgba(0,0,0,0.5) !important;
+}
+
+html[data-bs-theme="light"] table .text-black {
+    color: #000 !important;
+}
+
+/* BOOTSTRAP DARK MODE (data-bs-theme="dark" on html) */
+html[data-bs-theme="dark"] .text-white {
+    color: rgba(255,255,255,0.95) !important;
+}
+
+html[data-bs-theme="dark"] .text-white-50 {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+html[data-bs-theme="dark"] table .text-white {
+    color: rgba(255,255,255,0.95) !important;
 }
 
 /* Fix for opacity-75 text-white combinations */

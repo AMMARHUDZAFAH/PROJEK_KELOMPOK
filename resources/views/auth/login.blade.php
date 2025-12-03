@@ -24,11 +24,11 @@
 
         <form method="POST" action="/login">
             @csrf
-            
+
             <!-- Email (Tanpa Form Floating) -->
             <div class="mb-3 text-start">
                 <label for="emailInput" class="form-label">Alamat Email</label>
-                <input type="email" name="email" class="form-control" id="emailInput" 
+                <input type="email" name="email" class="form-control" id="emailInput"
                        placeholder="name@example.com" required>
             </div>
 

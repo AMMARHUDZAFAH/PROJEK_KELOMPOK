@@ -30,10 +30,10 @@
                         <img src="{{ asset('storage/'.$p->image) }}" class="img-fluid" />
                     @endif
                 </td>
-                <td class="">{{ $p->name }}</td>
-                <td>{{ $p->category?->name }}</td>
-                <td>{{ number_format($p->price,2) }}</td>
-                <td>{{ $p->stock }}</td>
+                <td class="text-black">{{ $p->name }}</td>
+                <td class="text-black">{{ $p->category?->name }}</td>
+                <td class="text-black">{{ number_format($p->price,2) }}</td>
+                <td class="text-black">{{ $p->stock }}</td>
                 <td>
                     <a href="{{ route('admin.products.edit', $p) }}" class="btn btn-sm btn-secondary">Edit</a>
                     <form action="{{ route('admin.products.destroy', $p) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete product?')">
@@ -52,7 +52,7 @@
 
 @push('styles')
 <style>
-    /* Force dark background + light text in night mode for readability */
+    /* CUSTOM SYSTEM: Night mode (.day-mode absence) */
     body:not(.day-mode) .table.text-white tbody td,
     body:not(.day-mode) .table.text-white tbody th {
         background-color: rgba(20,20,30,0.8) !important;
@@ -64,9 +64,28 @@
         color: rgba(255,255,255,0.95) !important;
     }
 
-    /* Day mode: ensure text is dark on light background */
+    /* CUSTOM SYSTEM: Day mode (.day-mode present) */
     body.day-mode .table.text-white td,
     body.day-mode .table.text-white th {
+        background-color: #fff !important;
+        color: #212529 !important;
+    }
+
+    /* BOOTSTRAP SYSTEM: Dark mode (data-bs-theme="dark") */
+    html[data-bs-theme="dark"] .table.text-white tbody td,
+    html[data-bs-theme="dark"] .table.text-white tbody th {
+        background-color: rgba(20,20,30,0.8) !important;
+        color: #fff !important;
+    }
+
+    html[data-bs-theme="dark"] .table.text-white thead th {
+        background-color: rgba(30,30,50,0.6) !important;
+        color: rgba(255,255,255,0.95) !important;
+    }
+
+    /* BOOTSTRAP SYSTEM: Light mode (data-bs-theme="light") */
+    html[data-bs-theme="light"] .table.text-white td,
+    html[data-bs-theme="light"] .table.text-white th {
         background-color: #fff !important;
         color: #212529 !important;
     }
