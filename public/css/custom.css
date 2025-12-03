@@ -298,10 +298,8 @@ body:not(.day-mode) .bg-white .text-white, body:not(.day-mode) .bg-light .text-w
 
 /* End of broad dark-mode overrides */
 
-/* Make any element with .text-dark readable in dark mode */
-body:not(.day-mode) .text-dark {
-    color: rgba(255,255,255,0.95) !important;
-}
+/* .text-dark should remain dark/readable - do NOT override to white */
+/* Dark mode table cells will handle their own styling via view-scoped CSS */
 
 /* Ensure form labels are readable in dark mode */
 body:not(.day-mode) .form-label,
