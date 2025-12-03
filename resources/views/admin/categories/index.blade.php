@@ -42,15 +42,15 @@
                     <tbody>
                         @forelse($categories as $category)
                             <tr>
-                                <td class="text-dark"><strong>#{{ $category->id }}</strong></td>
-                                <td class="text-dark">{{ $category->name }}</td>
-                                <td class="text-dark">
+                                <td><strong>#{{ $category->id }}</strong></td>
+                                <td>{{ $category->name }}</td>
+                                <td>
                                     <small class="text-muted">
                                         {{ Str::limit($category->description, 50) }}
                                     </small>
                                 </td>
-                                <td class="text-dark"><small class="text-muted">{{ $category->created_at->format('d/m/Y H:i') }}</small></td>
-                                <td class="text-dark">
+                                <td><small class="text-muted">{{ $category->created_at->format('d/m/Y H:i') }}</small></td>
+                                <td>
                                     <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-warning ">
                                         ✏️ Edit
                                     </a>
@@ -101,7 +101,7 @@
     /* Fix <td> text color in dark mode - very specific selectors */
     body:not(.day-mode) .table.text-white tbody td.text-dark,
     body:not(.day-mode) .table.text-white tr td.text-dark {
-        color: rgba(0, 0, 0, 0.95) !important;
+        color: rgba(255,255,255,0.95) !important;
         background-color: transparent !important;
     }
 
@@ -114,12 +114,17 @@
     /* Override .text-muted inside .text-dark cells */
     body:not(.day-mode) .table.text-white td.text-dark .text-muted,
     body:not(.day-mode) .table.text-white td.text-dark small.text-muted {
-        color: rgba(0, 0, 0, 0.95) !important;
+        color: rgba(255,255,255,0.95) !important;
     }
 
     body.day-mode .table.text-white td.text-dark .text-muted,
     body.day-mode .table.text-white td.text-dark small.text-muted {
         color: #000000 !important;
     }
+
+    .table.text-white td.text-dark {
+    color: inherit !important;
+}
+
 </style>
 @endpush

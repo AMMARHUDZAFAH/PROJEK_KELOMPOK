@@ -30,23 +30,23 @@
                 <tbody>
                     @forelse($orders as $order)
                     <tr>
-                        <td class="text-dark">
+                        <td>
                             <strong>#{{ $order->id }}</strong>
                         </td>
-                        <td class="text-dark">
+                        <td>
                             {{ $order->user->name }}<br>
                             <small class="text-muted">{{ $order->user->email }}</small>
                         </td>
-                        <td class="text-dark">
+                        <td>
                             <strong>Rp {{ number_format($order->total_price, 0) }}</strong>
                         </td>
-                        <td class="text-dark">
+                        <td>
                             <span class="badge bg-{{ $order->status_badge }}">{{ $order->status_label }}</span>
                         </td>
-                        <td class="text-dark">
+                        <td>
                             <small>{{ $order->created_at->format('d/m/Y H:i') }}</small>
                         </td>
-                        <td class="text-dark">
+                        <td>
                             <a href="{{ route('admin.orders.show', $order) }}" class="btn btn-sm btn-primary">Detail</a>
                         </td>
                     </tr>
