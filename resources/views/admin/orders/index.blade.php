@@ -84,17 +84,22 @@
         color: #212529 !important;
     }
 
-    /* Fix <td> text color in dark mode - very specific selectors */
-    body:not(.day-mode) .table.text-white tbody td.text-dark,
-    body:not(.day-mode) .table.text-white tr td.text-dark {
+    /* Ultra-specific selectors for dark mode - force visibility */
+    body:not(.day-mode) .table.text-white tbody tr td,
+    body:not(.day-mode) .table.text-white tbody tr td.text-dark,
+    body:not(.day-mode) .table.text-white tbody tr td.text-dark small,
+    body:not(.day-mode) .table.text-white tbody tr td.text-dark small.text-muted,
+    body:not(.day-mode) .table.text-white tbody tr td.text-dark .text-muted {
         color: rgba(255,255,255,0.95) !important;
-        background-color: transparent !important;
     }
 
-    body.day-mode .table.text-white tbody td.text-dark,
-    body.day-mode .table.text-white tr td.text-dark {
+    /* Day mode - ensure dark text */
+    body.day-mode .table.text-white tbody tr td,
+    body.day-mode .table.text-white tbody tr td.text-dark,
+    body.day-mode .table.text-white tbody tr td.text-dark small,
+    body.day-mode .table.text-white tbody tr td.text-dark small.text-muted,
+    body.day-mode .table.text-white tbody tr td.text-dark .text-muted {
         color: #000000 !important;
-        background-color: transparent !important;
     }
 </style>
 @endpush
