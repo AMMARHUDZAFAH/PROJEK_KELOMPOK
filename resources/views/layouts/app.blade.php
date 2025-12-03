@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body @unless(request()->is('login') || request()->is('register')) class="has-fixed-navbar" @endunless>
 
     <!-- 1. BACKGROUND GLOBAL (Diam di belakang) -->
     <div class="page-bg">

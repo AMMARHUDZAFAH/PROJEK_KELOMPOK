@@ -2,6 +2,28 @@
 
 @section('content')
 <div class="container py-5">
+
+    <!-- HERO / BANNER (kept minimal; global decorations live in layout) -->
+    <div class="row justify-content-center mb-4 product-card-anim products-hero position-relative" style="z-index:2;">
+        <div class="col-lg-10 hero-content">
+            <div class="text-center text-lg-start mb-3">
+                <h2 class="fw-bold text-dark display-6 mb-2">{{ $product->name }}</h2>
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-3 justify-content-center justify-content-lg-start">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Products</a></li>
+                            <li class="breadcrumb-item active">{{ $product->name }}</li>
+                        </ol>
+                    </nav>
+                    <div>
+                        <span class="badge bg-secondary">{{ $product->category?->name }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <!-- Product Images & Details -->
         <div class="col-lg-6 mb-4">
@@ -18,15 +40,6 @@
 
         <!-- Product Info -->
         <div class="col-lg-6">
-            <nav aria-label="breadcrumb" class="mb-3">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Products</a></li>
-                    <li class="breadcrumb-item active">{{ $product->name }}</li>
-                </ol>
-            </nav>
-
-            <h1 class="mb-2">{{ $product->name }}</h1>
             
             <div class="mb-3">
                 <span class="badge bg-secondary">{{ $product->category?->name }}</span>
@@ -86,15 +99,30 @@
             </div>
         </div>
     </div>
-</div>
+    @push('styles')
+    <style>
+    /* Minimal banner styles for product show (no decorations here) */
+    .products-hero { 
+        background: linear-gradient(135deg,#f8fafc 0%, #e9eef8 60%); 
+        border-radius: 12px; 
+        padding: 1rem; 
+        margin-bottom: 1rem; 
+        color: #000; 
+        overflow: hidden; 
+        position: relative;
+    }
+    body.day-mode .products-hero {
+        background: linear-gradient(135deg,#eaf6ff 0%, #dff2ff 60%);
+    }
 
-<style>
-.product-card {
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-</style>
+    .product-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    </style>
+    @endpush
+
 @endsection

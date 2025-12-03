@@ -49,6 +49,15 @@ body {
     overflow-x: hidden; /* Hilangkan scroll samping */
 }
 
+/* When navbar is fixed, add top padding so page content is not hidden underneath it.
+   We add the class `has-fixed-navbar` to <body> only when the navbar is included. */
+.has-fixed-navbar {
+    padding-top: 70px; /* default for small devices */
+}
+@media (min-width: 768px) {
+    .has-fixed-navbar { padding-top: 56px; }
+}
+
 /* DEFAULT (MODE MALAM) */
 body {
     color: #fff; /* Default teks putih */
@@ -255,8 +264,8 @@ body:not(.day-mode) .card .card-footer {
 }
 
 /* Override explicit dark text inside these surfaces */
-body:not(.day-mode) .card .text-dark:not(td),
-body:not(.day-mode) .card-body .text-dark:not(td),
+
+
 body:not(.day-mode) .list-group-item .text-dark,
 body:not(.day-mode) .alert .text-dark,
 body:not(.day-mode) .modal-content .text-dark,
@@ -268,6 +277,20 @@ body:not(.day-mode) .toast .text-dark {
 /* EXCEPTION: Keep table td.text-dark hitam di mode malam */
 body:not(.day-mode) table tbody td.text-dark,
 body:not(.day-mode) .table-responsive tbody td.text-dark {
+    color: #000000 !important;
+}
+
+/* Additional rules untuk semua child elements dalam table td.text-dark */
+body:not(.day-mode) table tbody td.text-dark *,
+body:not(.day-mode) .table-responsive tbody td.text-dark * {
+    color: #000000 !important;
+}
+
+/* Specifically override text-muted dalam table */
+body:not(.day-mode) table tbody td.text-dark .text-muted,
+body:not(.day-mode) .table-responsive tbody td.text-dark .text-muted,
+body:not(.day-mode) table tbody td.text-dark small,
+body:not(.day-mode) .table-responsive tbody td.text-dark small {
     color: #000000 !important;
 }
 
