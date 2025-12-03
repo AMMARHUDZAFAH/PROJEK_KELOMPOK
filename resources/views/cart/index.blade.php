@@ -277,6 +277,9 @@ tbody td:nth-child(4) {
                                                 <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" max="{{ $item->product->stock }}" class="form-control form-control-sm">
                                                 <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
                                             </div>
+                                        <span class="ms-1" style="font-size:12px; color:#266CA9;">
+    ({{ $item->quantity }} Produk)
+</span>
                                         </form>
                                     </td>
                                     <td>Rp {{ number_format($item->product->price * $item->quantity, 0) }}</td>
