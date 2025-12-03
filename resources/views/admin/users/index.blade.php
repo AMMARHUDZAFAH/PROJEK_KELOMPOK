@@ -62,21 +62,29 @@
 
 @push('styles')
 <style>
-    /* Ensure table text is readable in both modes for this admin users table */
-    body:not(.day-mode) .table.text-white td,
-    body:not(.day-mode) .table.text-white th {
+    /* Force dark background + light text in night mode for readability */
+    body:not(.day-mode) .table.text-white tbody td,
+    body:not(.day-mode) .table.text-white tbody th {
+        background-color: rgba(20,20,30,0.8) !important;
+        color: #fff !important;
+    }
+
+    body:not(.day-mode) .table.text-white thead th {
+        background-color: rgba(30,30,50,0.6) !important;
         color: rgba(255,255,255,0.95) !important;
     }
 
+    /* Day mode: ensure text is dark on light background */
     body.day-mode .table.text-white td,
     body.day-mode .table.text-white th {
+        background-color: #fff !important;
         color: #212529 !important;
     }
 
-    /* Make trashed rows remain readable */
+    /* Make trashed rows remain readable in night mode */
     body:not(.day-mode) .table.table-secondary td {
-        background-color: rgba(255,255,255,0.03) !important;
-        color: rgba(255,255,255,0.9) !important;
+        background-color: rgba(40,40,60,0.8) !important;
+        color: #fff !important;
     }
 </style>
 @endpush

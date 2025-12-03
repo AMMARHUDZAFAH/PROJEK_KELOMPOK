@@ -16,7 +16,7 @@
 
     <div class="card bg-transparent">
         <div class="table-responsive">
-            <table class="table table-hover mb-0">
+            <table class="table table-hover mb-0 text-white bg-transparent">
                 <thead class="bg-transparent">
                     <tr>
                         <th>No. Pesanan</th>
@@ -65,3 +65,26 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+<style>
+    /* Force dark background + light text in night mode for readability */
+    body:not(.day-mode) .table.text-white tbody td,
+    body:not(.day-mode) .table.text-white tbody th {
+        background-color: rgba(20,20,30,0.8) !important;
+        color: #fff !important;
+    }
+
+    body:not(.day-mode) .table.text-white thead th {
+        background-color: rgba(30,30,50,0.6) !important;
+        color: rgba(255,255,255,0.95) !important;
+    }
+
+    /* Day mode: ensure text is dark on light background */
+    body.day-mode .table.text-white td,
+    body.day-mode .table.text-white th {
+        background-color: #fff !important;
+        color: #212529 !important;
+    }
+</style>
+@endpush
