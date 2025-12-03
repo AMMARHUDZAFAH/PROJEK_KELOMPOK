@@ -255,14 +255,20 @@ body:not(.day-mode) .card .card-footer {
 }
 
 /* Override explicit dark text inside these surfaces */
-body:not(.day-mode) .card .text-dark,
-body:not(.day-mode) .card-body .text-dark,
+body:not(.day-mode) .card .text-dark:not(td),
+body:not(.day-mode) .card-body .text-dark:not(td),
 body:not(.day-mode) .list-group-item .text-dark,
 body:not(.day-mode) .alert .text-dark,
 body:not(.day-mode) .modal-content .text-dark,
 body:not(.day-mode) .dropdown-menu .text-dark,
 body:not(.day-mode) .toast .text-dark {
     color: rgba(255,255,255,0.95) !important;
+}
+
+/* EXCEPTION: Keep table td.text-dark hitam di mode malam */
+body:not(.day-mode) table tbody td.text-dark,
+body:not(.day-mode) .table-responsive tbody td.text-dark {
+    color: #000000 !important;
 }
 
 /* Make form elements on these surfaces readable */
