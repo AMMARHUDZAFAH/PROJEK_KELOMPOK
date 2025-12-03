@@ -51,6 +51,9 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', \App\Http\Middleware
 
     // Dashboard
     Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('dashboard');
+    // Export routes (PDF & Excel)
+    Route::get('/export/products.pdf', [\App\Http\Controllers\Admin\ExportController::class, 'productsPdf'])->name('export.products.pdf');
+    Route::get('/export/profit.csv', [\App\Http\Controllers\Admin\ExportController::class, 'profitExcel'])->name('export.profit.csv');
     // Sales data API for charts
     Route::get('/sales-data', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'salesData'])->name('sales.data');
 
