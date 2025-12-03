@@ -11,7 +11,7 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table">
+    <table class="table text-white bg-transparent">
         <thead class="bg-transparent">
             <tr>
                 <th>Image</th>
@@ -30,7 +30,7 @@
                         <img src="{{ asset('storage/'.$p->image) }}" class="img-fluid" />
                     @endif
                 </td>
-                <td>{{ $p->name }}</td>
+                <td class="text-black">{{ $p->name }}</td>
                 <td>{{ $p->category?->name }}</td>
                 <td>{{ number_format($p->price,2) }}</td>
                 <td>{{ $p->stock }}</td>
@@ -49,3 +49,26 @@
     {{ $products->links() }}
 </div>
 @endsection
+
+@push('styles')
+<style>
+    /* Force dark background + light text in night mode for readability */
+    body:not(.day-mode) .table.text-white tbody td,
+    body:not(.day-mode) .table.text-white tbody th {
+        background-color: rgba(20,20,30,0.8) !important;
+        color: #fff !important;
+    }
+
+    body:not(.day-mode) .table.text-white thead th {
+        background-color: rgba(30,30,50,0.6) !important;
+        color: rgba(255,255,255,0.95) !important;
+    }
+
+    /* Day mode: ensure text is dark on light background */
+    body.day-mode .table.text-white td,
+    body.day-mode .table.text-white th {
+        background-color: #fff !important;
+        color: #212529 !important;
+    }
+</style>
+@endpush
