@@ -42,15 +42,15 @@
                     <tbody>
                         @forelse($categories as $category)
                             <tr>
-                                <td><strong>#{{ $category->id }}</strong></td>
-                                <td>{{ $category->name }}</td>
-                                <td>
+                                <td class="text-dark"><strong>#{{ $category->id }}</strong></td>
+                                <td class="text-dark">{{ $category->name }}</td>
+                                <td class="text-dark">
                                     <small class="text-muted">
                                         {{ Str::limit($category->description, 50) }}
                                     </small>
                                 </td>
-                                <td><small class="text-muted">{{ $category->created_at->format('d/m/Y H:i') }}</small></td>
-                                <td>
+                                <td class="text-dark"><small class="text-muted">{{ $category->created_at->format('d/m/Y H:i') }}</small></td>
+                                <td class="text-dark">
                                     <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-warning ">
                                         ✏️ Edit
                                     </a>
@@ -65,7 +65,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center py-4 text-muted">Belum ada kategori. <a href="{{ route('admin.categories.create') }}">Tambah sekarang</a></td>
+                                <td colspan="5" class="text-center py-4 text-muted text-dark">Belum ada kategori. <a href="{{ route('admin.categories.create') }}">Tambah sekarang</a></td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -82,30 +82,10 @@
 
 @push('styles')
 <style>
-    /* CUSTOM SYSTEM: Night mode (.day-mode absence) */
-    body:not(.day-mode) .table.text-white tbody td,
-    body:not(.day-mode) .table.text-white tbody th {
-        background-color: rgba(20,20,30,0.8) !important;
-        color: #fff !important;
-    }
-
+    /* Only keep thead styling. Removed any rules targeting <td> as requested. */
     body:not(.day-mode) .table.text-white thead th {
         background-color: rgba(30,30,50,0.6) !important;
         color: rgba(255,255,255,0.95) !important;
-    }
-
-    /* CUSTOM SYSTEM: Day mode (.day-mode present) */
-    body.day-mode .table.text-white td,
-    body.day-mode .table.text-white th {
-        background-color: #fff !important;
-        color: #212529 !important;
-    }
-
-    /* BOOTSTRAP SYSTEM: Dark mode (data-bs-theme="dark") */
-    html[data-bs-theme="dark"] .table.text-white tbody td,
-    html[data-bs-theme="dark"] .table.text-white tbody th {
-        background-color: rgba(20,20,30,0.8) !important;
-        color: #fff !important;
     }
 
     html[data-bs-theme="dark"] .table.text-white thead th {
@@ -113,9 +93,7 @@
         color: rgba(255,255,255,0.95) !important;
     }
 
-    /* BOOTSTRAP SYSTEM: Light mode (data-bs-theme="light") */
-    html[data-bs-theme="light"] .table.text-white td,
-    html[data-bs-theme="light"] .table.text-white th {
+    html[data-bs-theme="light"] .table.text-white thead th {
         background-color: #fff !important;
         color: #212529 !important;
     }

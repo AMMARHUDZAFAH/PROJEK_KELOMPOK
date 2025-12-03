@@ -26,15 +26,15 @@
         <tbody>
             @foreach($users as $u)
             <tr @if($u->trashed()) class="table-secondary" @endif>
-                <td>
+                <td class="text-dark">
                     {{ $u->name }}
                     @if($u->trashed())
                         <span class="badge bg-warning ms-2">Trashed</span>
                     @endif
                 </td>
-                <td>{{ $u->email }}</td>
-                <td>{{ $u->role }}</td>
-                <td>
+                <td class="text-dark">{{ $u->email }}</td>
+                <td class="text-dark">{{ $u->role }}</td>
+                <td class="text-dark">
                     @if($u->trashed())
                         <form action="{{ route('admin.users.restore', $u->id) }}" method="POST" class="d-inline">
                             @csrf
@@ -62,36 +62,10 @@
 
 @push('styles')
 <style>
-    /* CUSTOM SYSTEM: Night mode (.day-mode absence) */
-    body:not(.day-mode) .table.text-white tbody td,
-    body:not(.day-mode) .table.text-white tbody th {
-        background-color: rgba(20,20,30,0.8) !important;
-        color: #fff !important;
-    }
-
+    /* Only keep thead styling. Removed any rules targeting <td> as requested. */
     body:not(.day-mode) .table.text-white thead th {
         background-color: rgba(30,30,50,0.6) !important;
         color: rgba(255,255,255,0.95) !important;
-    }
-
-    /* CUSTOM SYSTEM: Day mode (.day-mode present) */
-    body.day-mode .table.text-white td,
-    body.day-mode .table.text-white th {
-        background-color: #fff !important;
-        color: #212529 !important;
-    }
-
-    /* Make trashed rows remain readable in night mode (custom system) */
-    body:not(.day-mode) .table.table-secondary td {
-        background-color: rgba(40,40,60,0.8) !important;
-        color: #fff !important;
-    }
-
-    /* BOOTSTRAP SYSTEM: Dark mode (data-bs-theme="dark") */
-    html[data-bs-theme="dark"] .table.text-white tbody td,
-    html[data-bs-theme="dark"] .table.text-white tbody th {
-        background-color: rgba(20,20,30,0.8) !important;
-        color: #fff !important;
     }
 
     html[data-bs-theme="dark"] .table.text-white thead th {
@@ -99,14 +73,7 @@
         color: rgba(255,255,255,0.95) !important;
     }
 
-    html[data-bs-theme="dark"] .table.table-secondary td {
-        background-color: rgba(40,40,60,0.8) !important;
-        color: #fff !important;
-    }
-
-    /* BOOTSTRAP SYSTEM: Light mode (data-bs-theme="light") */
-    html[data-bs-theme="light"] .table.text-white td,
-    html[data-bs-theme="light"] .table.text-white th {
+    html[data-bs-theme="light"] .table.text-white thead th {
         background-color: #fff !important;
         color: #212529 !important;
     }

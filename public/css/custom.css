@@ -37,6 +37,10 @@
     transform: perspective(1000px);
 }
 
+td{
+    color: black !important;
+}
+
 /* Khusus Register boleh lebih lebar dikit biar muat 2 kolom */
 .register-card {
     max-width: 450px; 
@@ -187,10 +191,10 @@ body.day-mode .badge {
 }
 
 /* Tables and small text inside cards */
-.card small, .card .small, .table td, .table th {
+.card small, .card .small, .table th {
     color: rgba(255,255,255,0.9) !important;
 }
-body.day-mode .card small, body.day-mode .card .small, body.day-mode .table td, body.day-mode .table th {
+body.day-mode .card small, body.day-mode .card .small, body.day-mode .table th {
     color: rgba(0,0,0,0.85) !important;
 }
 
@@ -292,7 +296,6 @@ body:not(.day-mode) .accordion-button { color: #fff !important; }
 
 /* Tables: ensure readable rows and headers */
 body:not(.day-mode) .table thead th { color: rgba(255,255,255,0.95) !important; }
-body:not(.day-mode) .table tbody td { color: rgba(255,255,255,0.9) !important; }
 
 /* Safety: override any .text-white on light surfaces to remain white in dark mode */
 body:not(.day-mode) .bg-white .text-white, body:not(.day-mode) .bg-light .text-white { color: #fff !important; }
@@ -312,9 +315,7 @@ body:not(.day-mode) label {
 
 /* Fix table text in dark mode cards */
 body:not(.day-mode) .card.bg-transparent th,
-body:not(.day-mode) .card.bg-transparent td,
-body:not(.day-mode) .table th,
-body:not(.day-mode) .table td {
+body:not(.day-mode) .table th {
     color: rgba(255,255,255,0.95) !important;
 }
 
@@ -326,9 +327,7 @@ body:not(.day-mode) .card.bg-transparent {
 
 /* Fix table text in dark mode cards */
 body:not(.day-mode) .card.bg-transparent th,
-body:not(.day-mode) .card.bg-transparent td,
-body:not(.day-mode) .table th,
-body:not(.day-mode) .table td {
+body:not(.day-mode) .table th {
     color: rgba(255,255,255,0.95) !important;
 }
 
@@ -364,9 +363,7 @@ body:not(.day-mode) .table a {
 
 /* Day mode: ensure text is dark on light backgrounds */
 body.day-mode .card.bg-transparent th,
-body.day-mode .card.bg-transparent td,
-body.day-mode .table th,
-body.day-mode .table td {
+body.day-mode .table th {
     color: #333 !important;
 }
 
@@ -603,8 +600,7 @@ body.day-mode .btn.text-white {
 
 /* Fix table cells with text-white */
 body.day-mode table .text-white,
-body.day-mode th.text-white,
-body.day-mode td.text-white {
+body.day-mode th.text-white {
     color: #000 !important;
 }
 
