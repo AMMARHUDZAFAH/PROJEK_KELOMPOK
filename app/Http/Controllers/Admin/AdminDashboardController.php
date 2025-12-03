@@ -34,13 +34,10 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    /**
-     * Return sales data (labels + totals) for the last N days as JSON.
-     */
     public function salesData(Request $request)
     {
         $days = (int) $request->query('days', 30);
-        $days = max(7, min(90, $days)); // clamp between 7 and 90
+        $days = max(7, min(90, $days));
 
         $labels = [];
         $data = [];

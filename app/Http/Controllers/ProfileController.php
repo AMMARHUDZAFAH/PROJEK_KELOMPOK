@@ -7,17 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show user profile
-     */
     public function show()
     {
         return view('profile.show');
     }
 
-    /**
-     * Update user profile
-     */
     public function update(Request $request)
     {
         $request->validate([

@@ -19,7 +19,6 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        // Check authorization
         if ($order->user_id !== Auth::id() && Auth::user()->role !== 'admin') {
             abort(403);
         }
@@ -28,7 +27,6 @@ class OrderController extends Controller
         return view('orders.show', compact('order', 'items'));
     }
 
-    // Admin routes
     public function adminIndex()
     {
         $orders = Order::with('user')

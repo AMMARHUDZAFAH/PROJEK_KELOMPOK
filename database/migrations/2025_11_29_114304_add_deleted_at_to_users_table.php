@@ -6,17 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-public function up()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->softDeletes(); // adds deleted_at nullable timestamp
-    });
-}
+    public function up()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+    }
 
-public function down()
+    public function down()
 {
     Schema::table('users', function (Blueprint $table) {
         $table->dropSoftDeletes();

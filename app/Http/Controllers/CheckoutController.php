@@ -42,7 +42,6 @@ class CheckoutController extends Controller
         $items = $cart->items()->with('product')->get();
         $total = $cart->total();
 
-        // Create order
         $order = Order::create([
             'user_id' => Auth::id(),
             'total_price' => $total,
@@ -51,7 +50,6 @@ class CheckoutController extends Controller
             'phone' => $request->phone,
         ]);
 
-        // Create order items and reduce stock
         foreach ($items as $item) {
             $order->items()->create([
                 'product_id' => $item->product_id,
@@ -59,13 +57,10 @@ class CheckoutController extends Controller
                 'price' => $item->product->price,
             ]);
 
-            // Reduce stock
             $item->product->decrement('stock', $item->quantity);
         }
 
-        // Clear cart
         $cart->items()->delete();
-
         return redirect()->route('orders.show', $order)->with('success', 'Order berhasil dibuat! Silakan lakukan pembayaran.');
     }
 }

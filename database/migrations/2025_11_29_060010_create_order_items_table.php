@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('restrict');
             $table->integer('quantity');
-            $table->decimal('price', 10, 2); // harga saat order
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }

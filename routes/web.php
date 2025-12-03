@@ -6,31 +6,22 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 
-// Public route: always redirect root to login (site requires explicit login/register first)
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Product browsing moved into auth group below so users must login to view products
-
-// Cart routes (authenticated users)
 Route::middleware('auth')->group(function () {
-    // Product browsing (requires login now)
     Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/{product}', [\App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{product}', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update/{cartItem}', [\App\Http\Controllers\CartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/cart/remove/{cartItem}', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/cart/clear', [\App\Http\Controllers\CartController::class, 'clear'])->name('cart.clear');
-
-    // Checkout and orders
     Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'show'])->name('checkout.show');
     Route::post('/checkout/process', [\App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
 
-    // Profile routes
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::post('/profile/update', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });
@@ -41,38 +32,27 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-// User dashboard
 Route::middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':user'])->group(function () {
     Route::get('/user/dashboard', fn() => view('user.dashboard'))->name('user.dashboard');
 });
 
-// Admin routes (names prefixed with `admin.`)
 Route::name('admin.')->prefix('admin')->middleware(['auth', \App\Http\Middleware\RoleMiddleware::class . ':admin'])->group(function () {
 
-    // Dashboard
     Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('dashboard');
-    // Export routes (PDF & Excel)
     Route::get('/export/products.pdf', [\App\Http\Controllers\Admin\ExportController::class, 'productsPdf'])->name('export.products.pdf');
     Route::get('/export/profit.csv', [\App\Http\Controllers\Admin\ExportController::class, 'profitExcel'])->name('export.profit.csv');
-    // Sales data API for charts
     Route::get('/sales-data', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'salesData'])->name('sales.data');
 
-    // Categories management
     Route::resource('categories', CategoryController::class);
 
-    // Products management (admin)
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 
-    // Orders management (admin)
     Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'adminIndex'])->name('orders.index');
     Route::get('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'adminShow'])->name('orders.show');
     Route::post('/orders/{order}/status', [\App\Http\Controllers\OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
-    // Users management (Admin namespace)
     Route::resource('users', UserController::class);
-    // Restore soft-deleted user
     Route::post('users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
-    // Force delete (permanent) user
     Route::delete('users/{id}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
 });
 

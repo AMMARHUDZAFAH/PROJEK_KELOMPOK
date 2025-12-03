@@ -20,24 +20,22 @@ class AuthController extends Controller
     }
 
     public function register(Request $request)
-{
-    $request->validate([
-        'name'     => 'required|string|max:255',
-        'email'    => 'required|email|unique:users',
-        'password' => 'required|min:6|confirmed',
-    ]);
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
 
-    \App\Models\User::create([
-        'name'     => $request->name,
-        'email'    => $request->email,
-        'password' => bcrypt($request->password),
-        'role'     => 'user',  // default user
-    ]);
+        \App\Models\User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+            'role'     => 'user',
+        ]);
 
-    // Setelah register → redirect ke login
-    return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
-
-}
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+    }
 
 
     public function login(Request $request)

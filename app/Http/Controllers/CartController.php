@@ -35,12 +35,10 @@ class CartController extends Controller
 
         $cart = $this->getOrCreateCart();
 
-        // Check stock
         if ($product->stock < $request->quantity) {
             return back()->with('error', 'Stock tidak tersedia.');
         }
 
-        // Add or update cart item
         $cartItem = $cart->items()->where('product_id', $product->id)->first();
 
         if ($cartItem) {
@@ -62,7 +60,6 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1|max:100',
         ]);
 
-        // Check stock
         if ($cartItem->product->stock < $request->quantity) {
             return back()->with('error', 'Stock tidak tersedia.');
         }
