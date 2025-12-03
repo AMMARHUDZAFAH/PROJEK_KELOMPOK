@@ -28,7 +28,7 @@
             @csrf
             
             <div class="form-floating mb-3">
-                <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
+                <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email Address" required>
                 <label for="emailInput">Email address</label>
             </div>
 
