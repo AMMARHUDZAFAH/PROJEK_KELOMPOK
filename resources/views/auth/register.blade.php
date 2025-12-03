@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+<div class="container d-flex align-items-center justify-content-center mt-3" style="min-height: 80vh;">
     
     <div class="card p-4 p-md-5 login-card product-card-anim" style="width: 100%; max-width: 480px;">
         

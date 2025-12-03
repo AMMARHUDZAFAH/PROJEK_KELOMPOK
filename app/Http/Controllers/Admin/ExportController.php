@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ExportController extends Controller
 {
@@ -19,9 +20,9 @@ class ExportController extends Controller
         $html = view('admin.exports.products_pdf', compact('products'))->render();
 
         // Prefer barryvdh/laravel-dompdf if available
-        if (class_exists('\\Barryvdh\\DomPDF\\Facade')) {
+        if (class_exists('\\Barryvdh\\DomPDF\\Facade\\Pdf')) {
             try {
-                $pdf = \PDF::loadHTML($html)->setPaper('a4', 'portrait');
+                $pdf = Pdf::loadHTML($html)->setPaper('a4', 'portrait');
                 return $pdf->stream('products.pdf');
             } catch (\Exception $e) {
                 return response('PDF generation error: ' . $e->getMessage(), 500);
