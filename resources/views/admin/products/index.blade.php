@@ -30,7 +30,7 @@
                         <img src="{{ asset('storage/'.$p->image) }}" class="img-fluid" />
                     @endif
                 </td>
-                <td class="text-black">{{ $p->name }}</td>
+                <td class="">{{ $p->name }}</td>
                 <td>{{ $p->category?->name }}</td>
                 <td>{{ number_format($p->price,2) }}</td>
                 <td>{{ $p->stock }}</td>
