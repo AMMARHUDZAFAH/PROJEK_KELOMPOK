@@ -2,291 +2,89 @@
 
 @section('content')
 <div class="container py-5">
-    <div class="d-flex align-items-center justify-content-between mb-4">
-        <h2>🛒 Shopping Cart</h2>
-        <a href="{{ route('products.index') }}" class="btn btn-outline-primary">Continue Shopping</a>
+    
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-4 product-card-anim">
+        <h2 class="fw-bold text-adaptive"><i class="bi bi-cart3 me-2"></i>Keranjang Belanja</h2>
+        <a href="{{ route('products.index') }}" class="btn btn-outline-adaptive rounded-pill px-4 fw-bold">
+            <i class="bi bi-arrow-left me-1"></i> Lanjut Belanja
+        </a>
     </div>
-<style>
-    /* ===== TRANSITIONS GLOBAL ===== */
-    * {
-        transition: 0.25s ease;
-    }
 
-    /* ===== BACKGROUND GRADIENT UTAMA ===== */
-    body {
-        background: linear-gradient(160deg, #01082D 0%, #00264d 40%, #003366 100%) !important;
-        min-height: 100vh;
-        padding-bottom: 40px;
-    }
-
-    /* ===== CARD EFFECT: SOFT SHADOW & LIFT ===== */
-    .card {
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
-        border-radius: 12px
-         !important;
-    }
-
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(38,108,169,0.3) !important;
-    }
-
-    /* ===== HOVER EFFECT UNTUK BARIS TABEL ===== */
-    tbody tr:hover {
-        background-color: rgba(173, 225, 251, 0.08) !important;
-    }
-
-    /* ===== DIVIDER GLOW UNTUK SUMMARY ===== */
-    .card-body > div {
-        border-bottom: 1px solid rgba(173,225,251,0.1);
-        padding-bottom: 5px;
-        margin-bottom: 10px;
-    }
-
-    .card-body > div:last-child {
-        border-bottom: none !important;
-    }
-
-    /* ===== HIGHLIGHT UTAMA: TOTAL ===== */
-    .fs-5 strong {
-        color: #ADE1FB !important;
-        text-shadow: 0 0 8px rgba(38,108,169,0.4);
-    }
-
-    /* ===== BUTTON ENHANCEMENTS ===== */
-    .btn-primary {
-        box-shadow: 0 0 10px rgba(38,108,169,0.5);
-        font-weight: 600;
-    }
-
-    .btn-primary:hover {
-        box-shadow: 0 0 15px rgba(173,225,251,0.7);
-    }
-
-    .btn-outline-primary:hover,
-    .btn-outline-danger:hover {
-        box-shadow: 0 0 10px rgba(38,108,169,0.4);
-        transform: translateY(-2px);
-    }
-
-    /* ===== CART IMAGES ===== */
-    td img {
-        border: 2px solid #266CA9;
-        border-radius: 8px !important;
-        box-shadow: 0 0 8px rgba(38,108,169,0.4);
-    }
-
-    td img:hover {
-        transform: scale(1.05);
-    }
-
-    /* ===== INPUT NUMBER ===== */
-    .form-control {
-        border-radius: 6px !important;
-    }
-
-    .form-control:hover {
-        border-color: #ADE1FB !important;
-    }
-
-    /* Highlight saat fokus */
-    .form-control:focus {
-        box-shadow: 0 0 8px rgba(173,225,251,0.3) !important;
-    }
-
-    /* ===== EMPTY CART CONTAINER ===== */
-    .alert-info {
-        border-radius: 14px;
-        background: linear-gradient(135deg, #266CA9 0%, #0F2573 100%) !important;
-        color: #fff !important;
-        padding: 40px !important;
-    }
-
-    /* ===== HEADER SECTION ===== */
-    h2 {
-        text-shadow: 0 0 12px rgba(173,225,251,0.4);
-        font-weight: 700;
-        letter-spacing: 0.5px;
-    }
-
-    .d-flex a.btn-outline-primary {
-        font-weight: 600;
-    }
-
-    h2 {
-        color: #ADE1FB !important; /* paling terang */
-        text-shadow: 0 0 12px rgba(0,0,0,0.7), 0 0 8px rgba(173,225,251,0.3);
-        font-weight: 700 !important;
-        letter-spacing: 0.5px;
-    }
-
-    /* ===== TEKS PRODUK ===== */
-tbody td h6 {
-    color: #0F2573 !important;   /* biru gelap, jelas terbaca */
-    font-weight: 600;
-}
-
-tbody td small {
-    color: #266CA9 !important;  /* biru terang untuk kategori */
-}
-
-/* ===== HARGA & SUBTOTAL ===== */
-tbody td:nth-child(2),
-tbody td:nth-child(4) {
-    color: #0F2573 !important;
-    font-weight: 600;
-}
-
-/* ===== TOMBOL UPDATE ===== */
-.btn-outline-secondary {
-    border-color: #0F2573 !important;
-    color: #0F2573 !important;
-    font-weight: 600;
-}
-
-.btn-outline-secondary:hover {
-    background: #0F2573 !important;
-    color: white !important;
-}
-
-/* ===== TOMBOL HAPUS ===== */
-.btn-danger,
-.btn-danger:focus {
-    background: #041D56 !important;
-    border: none !important;
-}
-
-.btn-danger:hover {
-    background: #01082D !important;
-}
-/* ===== CARD SUMMARY ===== */
-.card-body {
-    background: linear-gradient(160deg, #041D56 0%, #01082D 100%) !important;
-    border-radius: 12px !important;
-    color: #ADE1FB !important;
-}
-
-/* Title Ringkasan */
-.card-title {
-    color: #ADE1FB !important;
-    font-weight: 700 !important;
-    text-shadow: 0 0 8px rgba(173,225,251,0.4);
-}
-
-/* Label */
-.card-body span {
-    color: #D2ECFF !important;
-}
-
-/* Value total */
-.fs-5 strong {
-    color: #ADE1FB !important;
-    text-shadow: 0 0 6px rgba(173,225,251,0.3);
-}
-
-/* Garis divider */
-.card-body > div {
-    border-bottom: 1px solid rgba(173,225,251,0.12) !important;
-}
-
-/* Tombol Checkout */
-.btn-primary {
-    background: #266CA9 !important;
-    border: none !important;
-}
-
-.btn-primary:hover {
-    background: #0F2573 !important;
-    box-shadow: 0 0 10px rgba(173,225,251,0.4);
-}
-
-/* Tombol Kosongkan */
-.btn-outline-danger {
-    border: 1px solid #266CA9 !important;
-    color: #ADE1FB !important;
-}
-
-.btn-outline-danger:hover {
-    background: #266CA9 !important;
-    color: white !important;
-}
-.card {
-    background: rgba(1, 8, 45, 0.6) !important;
-    border: 1px solid rgba(38,108,169,0.2) !important;
-}
-
-</style>
-
+    <!-- Alert Sukses/Error -->
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endif
-
-    @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div class="alert alert-success border-0 shadow-sm mb-4 d-flex align-items-center gap-2 product-card-anim">
+            <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
         </div>
     @endif
 
     @if($items->isEmpty())
-        <div class="alert alert-info text-center py-5">
-            <h5>Keranjang Anda kosong</h5>
-            <p class="mb-3">Belum ada produk di keranjang</p>
-            <a href="{{ route('products.index') }}" class="btn btn-primary">Mulai Belanja</a>
+        <!-- KOSONG (Desain Baru Transparan) -->
+        <div class="card border-0 shadow-sm bg-glass-cart text-center py-5 product-card-anim">
+            <div class="card-body">
+                <div class="mb-3" style="font-size: 4rem;">🛒</div>
+                <h4 class="fw-bold text-adaptive">Keranjang Anda Kosong</h4>
+                <p class="text-adaptive-soft mb-4">Belum ada produk yang ditambahkan.</p>
+                <a href="{{ route('products.index') }}" class="btn btn-primary rounded-pill px-5 fw-bold shadow-sm">
+                    Mulai Belanja
+                </a>
+            </div>
         </div>
     @else
+        <!-- ADA ISI -->
         <div class="row">
-            <!-- Cart Items -->
-            <div class="col-lg-8 mb-4">
-                <div class="card">
+            
+            <!-- LIST ITEM -->
+            <div class="col-lg-8 mb-4 product-card-anim" style="animation-delay: 0.1s">
+                <div class="card border-0 shadow-sm bg-glass-cart overflow-hidden">
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
+                        <table class="table align-middle mb-0 text-reset">
+                            <thead class="bg-transparent border-bottom border-white border-opacity-10">
                                 <tr>
-                                    <th>Produk</th>
-                                    <th>Harga</th>
-                                    <th>Qty</th>
-                                    <th>Subtotal</th>
-                                    <th></th>
+                                    <th class="ps-4 py-3 text-adaptive opacity-75">Produk</th>
+                                    <th class="py-3 text-adaptive opacity-75">Harga</th>
+                                    <th class="py-3 text-adaptive opacity-75" style="width: 120px;">Qty</th>
+                                    <th class="py-3 text-adaptive opacity-75">Subtotal</th>
+                                    <th class="py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($items as $item)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center gap-2">
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td class="ps-4 py-3">
+                                        <div class="d-flex align-items-center gap-3">
                                             @if($item->product->image)
-                                                <img src="{{ asset('storage/'.$item->product->image) }}" style="width:60px;height:60px;object-fit:cover;border-radius:4px">
+                                                <img src="{{ asset('storage/'.$item->product->image) }}" class="rounded shadow-sm" style="width:60px;height:60px;object-fit:cover;">
                                             @else
-                                                <div style="width:60px;height:60px;background:#f0f0f0;border-radius:4px"></div>
+                                                <div class="bg-secondary bg-opacity-25 rounded d-flex align-items-center justify-content-center" style="width:60px;height:60px;">
+                                                    <i class="bi bi-image text-adaptive opacity-50"></i>
+                                                </div>
                                             @endif
                                             <div>
-                                                <h6 class="mb-0">{{ $item->product->name }}</h6>
-                                                <small class="text-muted">{{ $item->product->category?->name }}</small>
+                                                <h6 class="mb-0 fw-bold text-adaptive">{{ Str::limit($item->product->name, 25) }}</h6>
+                                                <small class="text-adaptive-soft">{{ $item->product->category?->name }}</small>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>Rp {{ number_format($item->product->price, 0) }}</td>
+                                    <td class="text-adaptive">Rp {{ number_format($item->product->price, 0) }}</td>
                                     <td>
-                                        <form action="{{ route('cart.update', $item) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('cart.update', $item) }}" method="POST" class="d-flex align-items-center gap-2">
                                             @csrf
-                                            <div class="input-group" style="width:100px">
-                                                <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" max="{{ $item->product->stock }}" class="form-control form-control-sm">
-                                                <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
-                                            </div>
-                                        <span class="ms-1" style="font-size:12px; color:#266CA9;">
-    ({{ $item->quantity }} Produk)
-</span>
+                                            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" max="{{ $item->product->stock }}" 
+                                                   class="form-control form-control-sm text-center bg-transparent border-secondary text-adaptive" style="width: 60px;">
+                                            <button type="submit" class="btn btn-sm btn-link text-primary p-0" title="Update">
+                                                <i class="bi bi-arrow-clockwise fs-5"></i>
+                                            </button>
                                         </form>
                                     </td>
-                                    <td>Rp {{ number_format($item->product->price * $item->quantity, 0) }}</td>
-                                    <td>
-                                        <form action="{{ route('cart.remove', $item) }}" method="POST" class="d-inline">
+                                    <td class="fw-bold text-primary">Rp {{ number_format($item->product->price * $item->quantity, 0) }}</td>
+                                    <td class="text-end pe-4">
+                                        <form action="{{ route('cart.remove', $item) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                            <button type="submit" class="btn btn-sm text-danger hover-danger p-0" onclick="return confirm('Hapus produk ini?')">
+                                                <i class="bi bi-trash3-fill fs-5"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
@@ -297,35 +95,83 @@ tbody td:nth-child(4) {
                 </div>
             </div>
 
-            <!-- Cart Summary -->
-            <div class="col-lg-4">
-                <div class="card sticky-top" style="top:20px">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Ringkasan Pesanan</h5>
+            <!-- SUMMARY -->
+            <div class="col-lg-4 product-card-anim" style="animation-delay: 0.2s">
+                <div class="card border-0 shadow-sm bg-glass-cart sticky-top" style="top: 100px;">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4 text-adaptive">🧾 Ringkasan Pesanan</h5>
                         
-                        <div class="d-flex justify-content-between mb-2">
-                            <span>Subtotal:</span>
+                        <div class="d-flex justify-content-between mb-2 text-adaptive opacity-75">
+                            <span>Subtotal</span>
                             <span>Rp {{ number_format($total, 0) }}</span>
                         </div>
-                        <div class="d-flex justify-content-between mb-2">
-                            <span>Pengiriman:</span>
-                            <span class="text-success">Gratis</span>
+                        <div class="d-flex justify-content-between mb-3 pb-3 border-bottom border-white border-opacity-10 text-adaptive opacity-75">
+                            <span>Pengiriman</span>
+                            <span class="text-success fw-bold">Gratis</span>
                         </div>
-                        <div class="d-flex justify-content-between mb-3 fs-5">
-                            <strong>Total:</strong>
-                            <strong>Rp {{ number_format($total, 0) }}</strong>
+                        <div class="d-flex justify-content-between fs-4 mb-4 text-adaptive">
+                            <strong>Total</strong>
+                            <strong class="text-primary">Rp {{ number_format($total, 0) }}</strong>
                         </div>
 
-                        <a href="{{ route('checkout.show') }}" class="btn btn-primary w-100 mb-2">Lanjut ke Checkout</a>
+                        <a href="{{ route('checkout.show') }}" class="btn btn-primary w-100 py-2 fw-bold rounded-pill shadow-sm mb-3">
+                            Lanjut Checkout <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
                         
                         <form action="{{ route('cart.clear') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-outline-danger w-100" onclick="return confirm('Kosongkan keranjang?')">Kosongkan Keranjang</button>
+                            <button type="submit" class="btn btn-outline-danger w-100 rounded-pill btn-sm" onclick="return confirm('Kosongkan semua keranjang?')">
+                                <i class="bi bi-trash me-1"></i> Kosongkan Keranjang
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
+
         </div>
     @endif
 </div>
+
+<style>
+    /* 1. TEXT ADAPTIF */
+    .text-adaptive { color: #fff !important; }
+    .text-adaptive-soft { color: rgba(255, 255, 255, 0.7) !important; }
+    
+    body.day-mode .text-adaptive { color: #333 !important; }
+    body.day-mode .text-adaptive-soft { color: #666 !important; }
+
+    /* 2. GLASS CARD */
+    .bg-glass-cart {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    body.day-mode .bg-glass-cart {
+        background: #ffffff;
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    /* 3. BUTTONS */
+    .btn-outline-adaptive {
+        border: 1px solid rgba(255,255,255,0.5);
+        color: #fff;
+    }
+    .btn-outline-adaptive:hover { background: #fff; color: #333; }
+
+    body.day-mode .btn-outline-adaptive {
+        border: 1px solid #0d6efd;
+        color: #0d6efd;
+    }
+    body.day-mode .btn-outline-adaptive:hover {
+        background: #0d6efd; color: #fff;
+    }
+
+    /* 4. TABLE CLEANUP */
+    .table { --bs-table-bg: transparent; }
+    .text-reset { color: inherit !important; }
+    
+    /* Input qty di tabel */
+    .form-control { color: inherit !important; }
+</style>
 @endsection

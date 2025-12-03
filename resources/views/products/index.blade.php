@@ -74,6 +74,30 @@
     
     .hover-top { transition: transform 0.3s; }
     .hover-top:hover { transform: translateY(-5px); }
+
+/* TOMBOL UTAMA ADAPTIF (Lihat Semua & Cari Sekarang) */
+    .btn-primary-adaptive {
+        background-color: #ffffff !important; /* Malam: Putih */
+        color: #0d6efd !important; /* Teks Biru */
+        border: none !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2) !important;
+    }
+    .btn-primary-adaptive:hover {
+        background-color: #e2e6ea !important;
+        transform: translateY(-2px);
+    }
+
+    /* Override Mode Siang */
+    body.day-mode .btn-primary-adaptive {
+        background-color: #0d6efd !important; /* Siang: Biru */
+        color: #ffffff !important; /* Teks Putih */
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3) !important;
+    }
+    body.day-mode .btn-primary-adaptive:hover {
+        background-color: #0b5ed7 !important;
+    }}
+
 </style>
 
 <div class="container py-5">
@@ -90,18 +114,21 @@
                         Jelajahi koleksi elektronik terbaik dengan harga terjangkau.
                     </p>
 
-                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
-                        <a href="{{ route('products.index') }}" class="btn btn-primary rounded-pill px-4 shadow-sm fw-bold">
-                            Lihat Semua
-                        </a>
-                        <!-- TOMBOL TERLARIS (PAKAI ID) -->
-                        <a href="{{ route('products.index', ['sort'=>'popular']) }}" 
-                           id="btn-terlaris-special" 
-                           class="btn rounded-pill px-4">
-                            Terlaris
-                        </a>
-                    </div>
+    
+                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+                    <!-- GANTI CLASS DI SINI -->
+                    <a href="{{ route('products.index') }}" class="btn btn-primary-adaptive rounded-pill px-4 shadow-sm">
+                        Lihat Semua
+                    </a>
+
+                    <!-- Tombol Terlaris (Tetap) -->
+                    <a href="{{ route('products.index', ['sort'=>'popular']) }}" 
+                       id="btn-terlaris-special" 
+                       class="btn rounded-pill px-4">
+                        Terlaris
+                    </a>
                 </div>
+            </div>
 
                 <!-- Kolom Kanan: Search -->
                 <div class="col-lg-6">
@@ -133,10 +160,11 @@
                                         </select>
                                     </div>
                                 </div>
-
+                                
                                 <!-- Tombol Cari -->
                                 <div class="col-12 d-grid mt-4">
-                                    <button class="btn btn-primary fw-bold py-2 rounded-3 shadow-sm">
+                                    <!-- Ganti 'btn-primary' jadi 'btn-primary-adaptive' -->
+                                    <button class="btn btn-primary-adaptive fw-bold py-2 rounded-3 shadow-sm">
                                         🔍 Cari Sekarang
                                     </button>
                                 </div>
