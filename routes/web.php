@@ -51,6 +51,8 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', \App\Http\Middleware
 
     // Dashboard
     Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('dashboard');
+    // Sales data API for charts
+    Route::get('/sales-data', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'salesData'])->name('sales.data');
 
     // Categories management
     Route::resource('categories', CategoryController::class);

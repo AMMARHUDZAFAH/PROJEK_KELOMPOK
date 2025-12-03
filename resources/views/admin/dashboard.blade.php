@@ -98,6 +98,19 @@
     </div>
 
     <!-- 3. TABEL PESANAN TERBARU -->
+    <!-- 2.5 SALES CHART -->
+    <div class="row mb-4">
+        <div class="col-12 product-card-anim">
+            <div class="card shadow-sm border-0 bg-transparent-glass">
+                <div class="card-header bg-transparent border-bottom border-white border-opacity-10 py-3">
+                    <h5 class="mb-0 fw-bold text-white"><i class="bi bi-graph-up me-2 text-success"></i>Grafik Penjualan (30 hari)</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="salesChart" height="80"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-8 mb-4 product-card-anim" style="animation-delay: 0.5s">
             <div class="card shadow-sm border-0 h-100 bg-transparent-glass">
@@ -200,4 +213,66 @@
     /* Tabel transparan */
     .table { --bs-table-bg: transparent; color: inherit; }
 </style>
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        (function(){
+            const ctx = document.getElementById('salesChart');
+            if(!ctx) return;
+
+            // fetch data endpoint
+            fetch('{{ route('admin.sales.data') }}')
+                .then(r => r.json())
+                .then(payload => {
+                    const labels = payload.labels || [];
+                    const data = payload.data || [];
+
+                    const isDay = document.body.classList.contains('day-mode');
+                    const lineColor = isDay ? '#0d6efd' : '#64b5f6';
+                    const bgColor = isDay ? 'rgba(13,110,253,0.12)' : 'rgba(100,181,246,0.12)';
+
+                    new Chart(ctx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Pendapatan (Rp)',
+                                data: data,
+                                fill: true,
+                                backgroundColor: bgColor,
+                                borderColor: lineColor,
+                                pointRadius: 2,
+                                tension: 0.25
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    ticks: {
+                                        // format number short
+                                        callback: function(value){
+                                            return new Intl.NumberFormat('id-ID').format(value);
+                                        },
+                                        color: isDay ? '#000' : '#fff'
+                                    },
+                                    grid: { color: isDay ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)' }
+                                },
+                                x: {
+                                    ticks: { color: isDay ? '#000' : '#fff' },
+                                    grid: { display: false }
+                                }
+                            },
+                            plugins: {
+                                legend: { labels: { color: isDay ? '#000' : '#fff' } },
+                                tooltip: { callbacks: { label: function(context){ return 'Rp ' + new Intl.NumberFormat('id-ID').format(context.parsed.y); } } }
+                            }
+                        }
+                    });
+                })
+                .catch(err => console.error('Sales chart load error', err));
+        })();
+    </script>
+@endpush
 @endsection
