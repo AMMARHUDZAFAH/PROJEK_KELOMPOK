@@ -37,7 +37,20 @@
                 <tr>
                     <td style="text-align:center; vertical-align:middle;">
                         @if($p->image && file_exists(public_path('storage/' . $p->image)))
-                            <img src="{{ public_path('storage/' . $p->image) }}" style="width:80px; height:80px; object-fit:cover;" />
+                            @php
+                                $imgPath = public_path('storage/' . $p->image);
+                                $mime = null;
+                                if (function_exists('mime_content_type')) {
+                                    $mime = mime_content_type($imgPath);
+                                } elseif (function_exists('finfo_open')) {
+                                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                                    $mime = finfo_file($finfo, $imgPath);
+                                    finfo_close($finfo);
+                                }
+                                $data = base64_encode(file_get_contents($imgPath));
+                                $src = 'data:' . ($mime ?? 'image/png') . ';base64,' . $data;
+                            @endphp
+                            <img src="{{ $src }}" style="width:80px; height:80px; object-fit:cover;" />
                         @else
                             <div style="width:80px;height:80px;background:#f4f4f4;display:flex;align-items:center;justify-content:center;color:#999;">No Image</div>
                         @endif
