@@ -3,7 +3,6 @@
 @section('content')
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
     
-    <!-- Animasi muncul dari bawah -->
     <div class="card p-4 p-md-5 login-card product-card-anim" style="width: 100%; max-width: 420px;"> 
         
         <div class="text-center mb-4">
@@ -12,7 +11,6 @@
             <p class="opacity-75 small">Masuk untuk melanjutkan belanja</p>
         </div>
 
-        <!-- Alert Error/Success -->
         @if(session('error'))
             <div class="alert alert-danger py-2 small mb-4 border-0 shadow-sm rounded-3">
                 <i class="bi bi-exclamation-circle me-2"></i>{{ session('error') }}
@@ -27,14 +25,18 @@
         <form method="POST" action="/login">
             @csrf
             
-            <div class="form-floating mb-3">
-                <input type="email" name="email" class="form-control" id="emailInput" placeholder="Email Address" required>
-                <label for="emailInput">Email address</label>
+            <!-- Email (Tanpa Form Floating) -->
+            <div class="mb-3 text-start">
+                <label for="emailInput" class="form-label">Alamat Email</label>
+                <input type="email" name="email" class="form-control" id="emailInput" 
+                       placeholder="name@example.com" required>
             </div>
 
-            <div class="form-floating mb-4">
-                <input type="password" name="password" class="form-control" id="passInput" placeholder="Password" required>
-                <label for="passInput">Password</label>
+            <!-- Password -->
+            <div class="mb-4 text-start">
+                <label for="passInput" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="passInput" 
+                       placeholder="Masukkan password kamu" required>
             </div>
 
             <button class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow-sm mb-3">

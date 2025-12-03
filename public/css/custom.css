@@ -823,3 +823,50 @@ body:not(.day-mode) .dropdown-divider {
 }
 
 /* End navbar and toggle button fixes */
+
+/* --- FIX INPUT LOGIN & REGISTER (VERSI STATIC / DIAM) --- */
+
+/* 1. Label di atas Input (Judul) */
+.login-card .form-label {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9); /* Putih Terang */
+    margin-bottom: 8px; /* Jarak ke input */
+    font-size: 0.9rem;
+}
+
+/* 2. Kotak Input */
+.login-card .form-control {
+    background-color: rgba(0, 0, 0, 0.2) !important; /* Latar Gelap Transparan */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important; /* Teks ketikan user PUTIH */
+    padding: 12px 15px; /* Padding biar lega */
+    border-radius: 10px;
+}
+
+/* 3. Placeholder (Teks samar di dalam input) */
+.login-card .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important; /* Abu-abu samar */
+}
+
+/* 4. Autofill Browser Fix (Biar teks autofill tetap Putih) */
+.login-card input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px rgba(0,0,0,0) !important; 
+}
+
+/* --- MODE SIANG (DAY MODE) --- */
+body.day-mode .login-card .form-label {
+    color: #333 !important;
+}
+body.day-mode .login-card .form-control {
+    background-color: #f8f9fa !important; /* Putih abu */
+    border: 1px solid #ccc !important;
+    color: #333 !important;
+}
+body.day-mode .login-card .form-control::placeholder {
+    color: #aaa !important;
+}
+body.day-mode .login-card input:-webkit-autofill {
+    -webkit-text-fill-color: #333 !important;
+}

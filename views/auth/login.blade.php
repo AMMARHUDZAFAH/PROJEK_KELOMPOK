@@ -1,35 +1,34 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body class="login-body"> <!-- Class untuk background gerak -->
-
-    @if (session('success'))
-        <div class="alert alert-success position-absolute top-0 start-50 translate-middle-x mt-3">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="card p-4 shadow-lg login-card" style="width: 400px;"> <!-- Class login-card untuk efek 3D -->
+@section('content')
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    
+    <div class="card p-4 p-md-5 login-card product-card-anim" style="width: 100%; max-width: 420px;"> 
+        
         <div class="text-center mb-4">
-            <h1 style="font-size: 3rem;">⚡</h1>
-            <h3 class="fw-bold text-dark">Welcome Back!</h3>
-            <p class="text-muted small">Silakan login untuk lanjut belanja</p>
+            <div style="font-size: 3rem;">⚡</div> 
+            <h3 class="fw-bold mt-2">Welcome Back!</h3>
+            <p class="opacity-75 small">Masuk untuk melanjutkan belanja</p>
         </div>
 
         @if(session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
+            <div class="alert alert-danger py-2 small mb-4 border-0 shadow-sm rounded-3">
+                <i class="bi bi-exclamation-circle me-2"></i>{{ session('error') }}
+            </div>
+        @endif
+        @if (session('success'))
+            <div class="alert alert-success py-2 small mb-4 border-0 shadow-sm rounded-3">
+                <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+            </div>
         @endif
 
         <form method="POST" action="/login">
             @csrf
+            
             <div class="form-floating mb-3">
+                <!-- Placeholder wajib ada tapi isinya bebas (akan dihide css) -->
                 <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                <label for="emailInput">Email address</label>
+                <label for="emailInput">Email Address</label>
             </div>
 
             <div class="form-floating mb-4">
@@ -37,17 +36,16 @@
                 <label for="passInput">Password</label>
             </div>
 
-            <button class="btn btn-primary w-100 py-2 fw-bold" style="font-size: 1.1rem;">🚀 Masuk Sekarang</button>
+            <button class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow-sm mb-3">
+                Masuk Sekarang
+            </button>
         </form>
 
-        <p class="text-center mt-4 mb-0 text-muted">
-            Belum punya akun? <a href="/register" class="text-decoration-none fw-bold">Daftar disini</a>
-        </p>
+        <div class="text-center mt-3">
+            <span class="opacity-75 small">Belum punya akun?</span>
+            <a href="/register" class="text-decoration-none fw-bold text-primary ms-1">Daftar disini</a>
+        </div>
     </div>
 
-    <!-- Jangan lupa load script custom JS kita -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-</body>
-
-</html>
+</div>
+@endsection

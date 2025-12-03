@@ -3,7 +3,6 @@
 @section('content')
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
     
-    <!-- Animasi muncul -->
     <div class="card p-4 p-md-5 login-card product-card-anim" style="width: 100%; max-width: 480px;">
         
         <div class="text-center mb-4">
@@ -25,27 +24,29 @@
         <form method="POST" action="/register">
             @csrf
 
-            <div class="form-floating mb-3">
-                <input type="text" name="name" class="form-control" id="nameInput" placeholder="Nama Lengkap" required>
-                <label for="nameInput">Nama Lengkap</label>
+            <!-- Nama -->
+            <div class="mb-3 text-start">
+                <label for="nameInput" class="form-label">Nama Lengkap</label>
+                <input type="text" name="name" class="form-control" id="nameInput" placeholder="Contoh: Budi Santoso" required>
             </div>
 
-            <div class="form-floating mb-3">
+            <!-- Email -->
+            <div class="mb-3 text-start">
+                <label for="emailInput" class="form-label">Alamat Email</label>
                 <input type="email" name="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                <label for="emailInput">Alamat Email</label>
             </div>
 
             <div class="row g-2 mb-4">
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input type="password" name="password" class="form-control" id="passInput" placeholder="Password" required>
-                        <label for="passInput">Password</label>
+                <div class="col-6 text-start">
+                    <div class="mb-0">
+                        <label for="passInput" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="passInput" placeholder="******" required>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input type="password" name="password_confirmation" class="form-control" id="confPassInput" placeholder="Confirm" required>
-                        <label for="confPassInput">Confirm</label>
+                <div class="col-6 text-start">
+                    <div class="mb-0">
+                        <label for="confPassInput" class="form-label">Confirm</label>
+                        <input type="password" name="password_confirmation" class="form-control" id="confPassInput" placeholder="******" required>
                     </div>
                 </div>
             </div>
