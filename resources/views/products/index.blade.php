@@ -52,10 +52,24 @@
         color: #fff !important;
         border: 1px solid rgba(255,255,255,0.2) !important;
     }
+    .input-group-text {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255,255,255,0.2) !important;
+        color: #fff !important;
+    }
+    
+    /* FIX: Paksa Dropdown Text Hitam */
+    option { background-color: #fff !important; color: #000 !important; }
+
     body.day-mode .bg-input {
         background-color: #f8f9fa !important;
         color: #333 !important;
         border: 1px solid #ddd !important;
+    }
+    body.day-mode .input-group-text {
+        background-color: #e9ecef !important;
+        border: 1px solid #ddd !important;
+        color: #555 !important;
     }
     
     .hover-top { transition: transform 0.3s; }
@@ -70,7 +84,7 @@
             <div class="row align-items-center">
                 
                 <!-- Kolom Kiri -->
-                <div class="col-lg-7 text-center text-lg-start mb-4">
+                <div class="col-lg-6 text-center text-lg-start mb-4">
                     <h2 class="fw-bold display-5 mb-2 text-hero-adaptive">🛍️ Temukan Gadget Impianmu</h2>
                     <p class="text-hero-sub-adaptive lead mb-3">
                         Jelajahi koleksi elektronik terbaik dengan harga terjangkau.
@@ -90,19 +104,41 @@
                 </div>
 
                 <!-- Kolom Kanan: Search -->
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <div class="card shadow-lg border-0" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px;">
                         <div class="card-body p-4">
                             <form method="GET" class="row g-3">
+                                
+                                <!-- Input 1 -->
                                 <div class="col-12">
-                                    <label class="form-label fw-bold small text-uppercase text-white opacity-75">Cari Produk</label>
+                                    <label class="form-label fw-bold small text-uppercase text-white opacity-75 mb-1">Cari Nama Barang</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-input border-0"><i class="bi bi-search text-white"></i></span>
-                                        <input type="text" name="q" value="{{ request('q') }}" class="form-control bg-input shadow-none" placeholder="iPhone 13...">
+                                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                        <input type="text" name="q" value="{{ request('q') }}" class="form-control bg-input shadow-none" placeholder="Contoh: Laptop Gaming...">
                                     </div>
                                 </div>
+
+                                <!-- Input 2 -->
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small text-uppercase text-white opacity-75 mb-1">Pilih Jenis Produk</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-grid-fill"></i></span>
+                                        <select name="category" class="form-select bg-input shadow-none cursor-pointer">
+                                            <option value="">Semua Kategori</option>
+                                            @foreach($categories as $c)
+                                                <option value="{{ $c->id }}" @if(request('category')==$c->id) selected @endif>
+                                                    {{ $c->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Tombol Cari -->
                                 <div class="col-12 d-grid mt-4">
-                                    <button class="btn btn-primary fw-bold py-2 rounded-3 shadow-sm">Filter & Cari</button>
+                                    <button class="btn btn-primary fw-bold py-2 rounded-3 shadow-sm">
+                                        🔍 Cari Sekarang
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -112,11 +148,13 @@
         </div>
     </div>
 
-    <!-- 2. DAFTAR PRODUK -->
+    
+<!-- 2. DAFTAR PRODUK -->
     <div class="row" style="z-index:2;">
     @forelse($products as $p)
         <div class="col-md-3 mb-4 product-card-anim">
-            <div class="card h-100 shadow-sm hover-top bg-glass-product">
+            <!-- Tambah position-relative biar stretched-link tahu batasnya -->
+            <div class="card h-100 shadow-sm hover-top bg-glass-product position-relative">
 
                 <!-- Gambar -->
                 <div class="position-relative bg-white d-flex align-items-center justify-content-center" style="height: 220px;">
@@ -127,13 +165,7 @@
                     @endif
 
                     @if($p->category)
-                    <!-- 
-                        PERBAIKAN MUTLAK BADGE KATEGORI:
-                        Saya hapus class 'badge' bootstrap.
-                        Saya pakai style inline !important biar warnanya gak bisa diganggu gugat.
-                    -->
-                    <span class="position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill shadow-sm"
-                          style="background-color: #ffffff !important; color: #000000 !important; font-weight: 700; font-size: 0.75rem; z-index: 10;">
+                    <span class="badge badge-category-final position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2">
                         {{ $p->category->name }}
                     </span>
                     @endif
@@ -154,7 +186,8 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('products.show', $p) }}" class="btn btn-outline-primary rounded-pill w-100 mt-auto fw-bold">
+                    <a href="{{ route('products.show', $p) }}" 
+                       class="btn btn-outline-primary rounded-pill w-100 mt-auto fw-bold stretched-link">
                         Lihat Detail
                     </a>
                 </div>
@@ -169,6 +202,8 @@
         </div>
     @endforelse
     </div>
+
+  
 
     <div class="mt-5 d-flex justify-content-center">
         {{ $products->links() }}

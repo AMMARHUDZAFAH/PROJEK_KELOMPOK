@@ -51,9 +51,9 @@
 <style>
     /* 1. HERO ADAPTIF */
     
-    /* DEFAULT (MODE MALAM): Glassmorphism Biru Gelap */
+    /* --- MODE MALAM (DEFAULT) --- */
     .user-hero-adaptive {
-        background: rgba(13, 110, 253, 0.15); /* Biru transparan */
+        background: rgba(13, 110, 253, 0.15); /* Biru Transparan */
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         color: #fff;
@@ -63,18 +63,36 @@
         color: #0d6efd;
         width: 80px; height: 80px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800;
+        box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
+    
+    /* TOMBOL UTAMA MALAM: Putih Solid (Biar Kontras) */
     .btn-primary-adaptive {
-        background: #0d6efd; border: none; color: #fff;
+        background: #ffffff; 
+        border: none; 
+        color: #0d6efd; /* Teks Biru */
+        font-weight: 700;
     }
-    .btn-outline-adaptive {
-        background: transparent; border: 2px solid rgba(255,255,255,0.5); color: #fff;
-    }
-    .btn-outline-adaptive:hover {
-        background: #fff; color: #0d6efd;
+    .btn-primary-adaptive:hover {
+        background: #e6e6e6; 
+        color: #003366;
+        transform: translateY(-2px);
     }
 
-    /* OVERRIDE MODE SIANG: Putih Bersih */
+    /* TOMBOL OUTLINE MALAM */
+    .btn-outline-adaptive {
+        background: transparent; 
+        border: 2px solid rgba(255,255,255,0.6); 
+        color: #fff;
+        font-weight: 700;
+    }
+    .btn-outline-adaptive:hover {
+        background: #fff; 
+        color: #0d6efd;
+        border-color: #fff;
+    }
+
+    /* --- MODE SIANG (OVERRIDE) --- */
     body.day-mode .user-hero-adaptive {
         background: #ffffff; /* Putih Solid */
         color: #333;
@@ -82,25 +100,37 @@
         box-shadow: 0 10px 40px rgba(0,0,0,0.08) !important;
     }
     body.day-mode .user-hero-adaptive .avatar {
-        background: #0d6efd; /* Avatar jadi biru */
+        background: #0d6efd; /* Avatar Biru */
         color: #fff;
+        box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
     }
+    
+    /* TOMBOL UTAMA SIANG: Biru Solid */
     body.day-mode .btn-primary-adaptive {
-        background: #0d6efd; color: #fff;
+        background: #0d6efd; 
+        color: #fff;
         box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
     }
-    body.day-mode .btn-outline-adaptive {
-        border: 2px solid #0d6efd; color: #0d6efd;
-    }
-    body.day-mode .btn-outline-adaptive:hover {
-        background: #0d6efd; color: #fff;
+    body.day-mode .btn-primary-adaptive:hover {
+        background: #0b5ed7;
+        color: #fff;
     }
 
-    /* Animasi Fade In */
+    /* TOMBOL OUTLINE SIANG */
+    body.day-mode .btn-outline-adaptive {
+        border: 2px solid #0d6efd; 
+        color: #0d6efd;
+    }
+    body.day-mode .btn-outline-adaptive:hover {
+        background: #0d6efd; 
+        color: #fff;
+    }
+
+    /* UTILS */
     .anim-fade { opacity: 0; transform: translateY(10px); transition: all 0.6s ease; }
     .anim-fade.visible { opacity: 1; transform: none; }
 
-    /* Hiasan Bulat Samar di Pojok */
+    /* HIASAN BACKGROUND */
     .bg-decoration {
         position: absolute; top: -50%; right: -10%; width: 300px; height: 300px;
         background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
