@@ -30,10 +30,10 @@
                 <a href="{{ route('admin.orders.index') }}" class="btn btn-warning px-4 rounded-pill shadow-sm">
                     <i class="bi bi-cart-check-fill me-1"></i> Pesanan
                 </a>
-                <a href="{{ route('admin.export.products.pdf') }}" class="btn btn-outline-light px-4 rounded-pill shadow-sm" target="_blank">
+                <a href="{{ route('admin.export.products.pdf') }}" class="btn btn-danger px-4 rounded-pill shadow-sm" target="_blank">
                     <i class="bi bi-file-earmark-pdf-fill me-1"></i> PDF Produk
                 </a>
-                <a href="{{ route('admin.export.profit.csv') }}" class="btn btn-outline-light px-4 rounded-pill shadow-sm">
+                <a href="{{ route('admin.export.profit.csv') }}" class="btn btn-success px-4 rounded-pill shadow-sm">
                     <i class="bi bi-file-earmark-spreadsheet-fill me-1"></i> Excel Keuntungan
                 </a>
             </div>
