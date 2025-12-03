@@ -237,7 +237,8 @@
                     const lineColor = isDay ? '#0d6efd' : '#64b5f6';
                     const bgColor = isDay ? 'rgba(13,110,253,0.12)' : 'rgba(100,181,246,0.12)';
 
-                    new Chart(ctx.getContext('2d'), {
+                    // Create chart instance and make it theme-aware
+                    var salesChart = new Chart(ctx.getContext('2d'), {
                         type: 'line',
                         data: {
                             labels: labels,
@@ -257,7 +258,6 @@
                             scales: {
                                 y: {
                                     ticks: {
-                                        // format number short
                                         callback: function(value){
                                             return new Intl.NumberFormat('id-ID').format(value);
                                         },
@@ -276,6 +276,46 @@
                             }
                         }
                     });
+
+                    // Helper to apply theme colors to chart and update
+                    function applyThemeToChart(isDayMode) {
+                        var lineColor = isDayMode ? '#0d6efd' : '#64b5f6';
+                        var bgColor = isDayMode ? 'rgba(13,110,253,0.12)' : 'rgba(100,181,246,0.12)';
+
+                        salesChart.data.datasets[0].borderColor = lineColor;
+                        salesChart.data.datasets[0].backgroundColor = bgColor;
+
+                        // Scales
+                        salesChart.options.scales.y.ticks.color = isDayMode ? '#000' : '#fff';
+                        salesChart.options.scales.y.grid.color = isDayMode ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)';
+                        salesChart.options.scales.x.ticks.color = isDayMode ? '#000' : '#fff';
+
+                        // Legend and tooltips
+                        salesChart.options.plugins.legend.labels.color = isDayMode ? '#000' : '#fff';
+
+                        salesChart.update();
+                    }
+
+                    // Listen for the toggle button (if exists) to update chart theme dynamically
+                    var modeToggleBtn = document.getElementById('modeToggle');
+                    if (modeToggleBtn) {
+                        modeToggleBtn.addEventListener('click', function(){
+                            var nowDay = document.body.classList.contains('day-mode');
+                            applyThemeToChart(nowDay);
+                        });
+                    }
+
+                    // Also observe body class changes (in case theme is changed elsewhere)
+                    var observer = new MutationObserver(function(mutations){
+                        mutations.forEach(function(m){
+                            if (m.attributeName === 'class') {
+                                var nowDay = document.body.classList.contains('day-mode');
+                                applyThemeToChart(nowDay);
+                            }
+                        });
+                    });
+                    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
                 })
                 .catch(err => console.error('Sales chart load error', err));
         })();
