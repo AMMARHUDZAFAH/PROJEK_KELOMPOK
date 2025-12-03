@@ -246,7 +246,6 @@ body:not(.day-mode) .accordion-item,
 body:not(.day-mode) .accordion-body,
 body:not(.day-mode) .table,
 body:not(.day-mode) .table thead,
-body:not(.day-mode) .table tbody tr,
 body:not(.day-mode) .table-hover tbody tr:hover,
 body:not(.day-mode) .card .card-header,
 body:not(.day-mode) .card .card-footer {
@@ -262,9 +261,7 @@ body:not(.day-mode) .list-group-item .text-dark,
 body:not(.day-mode) .alert .text-dark,
 body:not(.day-mode) .modal-content .text-dark,
 body:not(.day-mode) .dropdown-menu .text-dark,
-body:not(.day-mode) .toast .text-dark,
-body:not(.day-mode) .table tbody tr .text-dark,
-body:not(.day-mode) .table tbody td.text-dark {
+body:not(.day-mode) .toast .text-dark {
     color: rgba(255,255,255,0.95) !important;
 }
 
