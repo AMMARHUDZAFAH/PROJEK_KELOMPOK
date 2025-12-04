@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/add/{product}', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update/{cartItem}', [\App\Http\Controllers\CartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/cart/remove/{cartItem}', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [\App\Http\Controllers\CartController::class, 'clear'])->name('cart.clear');
     Route::get('/checkout', [\App\Http\Controllers\CheckoutController::class, 'show'])->name('checkout.show');
     Route::post('/checkout/process', [\App\Http\Controllers\CheckoutController::class, 'process'])->name('checkout.process');
     Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');

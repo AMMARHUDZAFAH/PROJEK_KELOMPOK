@@ -169,7 +169,7 @@
                     @forelse($latestProducts as $product)
                         <div class="list-group-item bg-transparent border-bottom border-white border-opacity-10 py-3 d-flex align-items-center gap-3">
                             @if($product->image)
-                                <img src="{{ asset('storage/'.$product->image) }}" class="rounded" style="width: 45px; height: 45px; object-fit: cover;">
+                                <img src="{{ asset("storage/{$product->image}") }}" class="rounded" style="width: 45px; height: 45px; object-fit: cover;">
                             @else
                                 <div class="bg-secondary bg-opacity-25 rounded d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
                                     <i class="bi bi-image opacity-50 text-white"></i>

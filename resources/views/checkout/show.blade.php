@@ -37,7 +37,7 @@
                         <div class="mb-4">
                             <h5>💳 Metode Pembayaran</h5>
                             <div class="alert alert-info">
-                                <strong>Transfer Bank</strong> - Silakan transfer ke rekening kami setelah membuat pesanan
+                                <strong>Transfer Bank</strong> - BCA 5355014867 A/N AMMAR HUDZAFAH
                             </div>
                         </div>
 
